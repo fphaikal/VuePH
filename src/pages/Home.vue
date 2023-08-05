@@ -66,7 +66,7 @@
                   <div class="card mt-3 text-light" style="max-width: 540px; background-color: rgba(30, 33, 36, 0); border-color: rgba(30, 33, 36, 0);">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img :src="recents.member.img_alt" class="img-fluid rounded-start" alt="...">
+                        <img :src="recents.member.img" class="img-fluid rounded-start" alt="...">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
