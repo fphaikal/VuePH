@@ -33,7 +33,7 @@ const getShowroomAdminData = async (endpoint) => {
 
 const getRecentLive = async (page, perpage) => {
   try {
-    const response = await axios.get(`https://dc.crstlnz.site/api/showroom/recent?sort=date&page=${page}&filter=active&order=-1&perpage=${perpage}`);
+    const response = await axios.get(`/api/cors?url=https://dc.crstlnz.site/api/showroom/recent?sort=date&page=${page}&filter=active&order=-1&perpage=${perpage}`);
     return response.data;
   } catch (error) {
     console.error('Gagal mengambil data recent live dari API Showroom:', error);
