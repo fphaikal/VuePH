@@ -119,6 +119,8 @@ export default {
 
       // Simpan data member ke dalam variabel members
       this.recentLive = data.recents;
+      // Tampilkan data di console log
+      console.log(this.members);
     } catch (error) {
       console.error('Gagal mengambil data:', error);
       // Menampilkan pesan error jika gagal mengambil data
