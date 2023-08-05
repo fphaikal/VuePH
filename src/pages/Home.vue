@@ -117,11 +117,7 @@ export default {
     try {
       const page = 1;
       const perpage = 30;
-
-      // Panggil fungsi getRecentMembers dari file api.js untuk mengambil data
       const data = await getRecentLive(page, perpage);
-
-      // Simpan data member ke dalam variabel members
       this.recentLive = data.recents;
     } catch (error) {
       console.error('Gagal mengambil data:', error);

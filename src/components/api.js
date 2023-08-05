@@ -31,25 +31,13 @@ const getShowroomAdminData = async (endpoint) => {
   }
 };
 
-const apiRecentLiveMember = axios.create({
-  baseURL: '/api/cors?https://dc.crstlnz.site/api/showroom',
-});
-
 const getRecentLive = async (page, perpage) => {
   try {
-    const response = await apiRecentLiveMember.get('/recent', {
-      params: {
-        sort: 'date',
-        page: page,
-        filter: 'active',
-        order: -1,
-        perpage: perpage,
-      },
-    });
+    const response = await axios.get(`https://dc.crstlnz.site/api/showroom/recent?sort=date&page=${page}&filter=active&order=-1&perpage=${perpage}`);
     return response.data;
   } catch (error) {
-    console.error('Gagal mengambil data dari API Showroom Admin:', error);
-    return null;
+    console.error('Gagal mengambil data recent live dari API Showroom:', error);
+    return [];
   }
 };
 
