@@ -117,7 +117,7 @@ export default {
 
     try {
       // Panggil fungsi getRecentMembers dari file api.js untuk mengambil data
-      const data = await getRecentMembers();
+      const data = await getRecentLive();
 
       // Simpan data member ke dalam variabel members
       this.recentLive = data.recents;
