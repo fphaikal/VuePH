@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 // Buat instance axios untuk API Showroom
 const apiShowroom = axios.create({
@@ -31,13 +31,13 @@ const getShowroomAdminData = async (endpoint) => {
   }
 };
 
-const api = axios.create({
-  baseURL: 'https://dc.crstlnz.site/api/showroom',
+const apiRecentLiveMember = axios.create({
+  baseURL: '/api/cors?https://dc.crstlnz.site/api/showroom',
 });
 
-const getRecentMembers = async (page, perpage) => {
+const getRecentLive = async (page, perpage) => {
   try {
-    const response = await api.get('/recent', {
+    const response = await apiRecentLiveMember.get('/recent', {
       params: {
         sort: 'date',
         page: page,
@@ -48,10 +48,10 @@ const getRecentMembers = async (page, perpage) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Gagal mengambil data:', error);
-    return [];
+    console.error('Gagal mengambil data dari API Showroom Admin:', error);
+    return null;
   }
 };
 
 // Export semua fungsi yang diperlukan
-export { getShowroomData, getShowroomAdminData, getRecentMembers  };
+export { getShowroomData, getShowroomAdminData, getRecentLive };

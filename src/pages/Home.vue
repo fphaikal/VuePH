@@ -89,8 +89,8 @@
 <style scoped></style>
 
 <script>
-import { getShowroomData } from '../components/api';
-import axios from 'axios'
+import { getShowroomData, getRecentMember } from '../components/api';
+
 export default {
   data() {
     return {
@@ -115,14 +115,14 @@ export default {
     this.loading = false;
 
     try {
-      const apiUrl = '/api/cors?url=https://dc.crstlnz.site/api/showroom/recent?sort=date&page=1&filter=active&order=-1&perpage=1';
-      const response = await axios.get(apiUrl);
+      const page = 1;
+      const perpage = 1;
 
-      // Dapatkan data dari properti "recents" dalam respon
-      const data = response.data.recents;
+      // Panggil fungsi getRecentMembers dari file api.js untuk mengambil data
+      const data = await getRecentMembers(page, perpage);
 
-      // Ambil data pertama dari array data sebagai member
-      this.members = data[0].member;
+      // Simpan data member ke dalam variabel members
+      this.members = data.recents;
     } catch (error) {
       console.error('Gagal mengambil data:', error);
     }
