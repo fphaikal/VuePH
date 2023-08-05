@@ -45,7 +45,7 @@
                 <div class="row g-2">
                   <div v-for="user in allMembers" :key="user.id" class="col-md-4 col-sm-6 mt-1 mb-1">
                     <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
-                      <a :href="'https://www.showroom-live.com/room/profile?room_id='+ user.id" target="_blank">
+                      <a :href="'https://www.showroom-live.com/room/profile?room_id=' + user.id" target="_blank">
                         <img :src="user.image_url ?? user.image" class="card-img-top" :alt="user.name ?? user.main_name">
                       </a>
                       <div class="card-body">
@@ -59,20 +59,21 @@
           </div>
 
           <div class="col-md-3">
-            <div class="card rounded-4 shadow" style="background-color: #282b30;">
-              <div class="card-body text-light">
-                <h5>Recent Live</h5>
-                <div v-for="recents in recentLive" :key="recents._id">
-                  <div class="card mt-3 text-light" style="max-width: 540px; background-color: rgba(30, 33, 36, 0); border-color: rgba(30, 33, 36, 0);">
+            <div v-for="recents in recentLive" :key="recents._id">
+              <div class="card rounded-4 shadow" style="background-color: #282b30;">
+                <div class="card-body text-light">
+                  <h5>Recent Live</h5>
+                  <div class="card mt-3 text-light"
+                    style="max-width: 540px; background-color: rgba(30, 33, 36, 0); border-color: rgba(30, 33, 36, 0);">
                     <div class="row g-0">
                       <div class="col-md-4">
                         <img :src="recents.member.img" class="img-fluid rounded-start" alt="...">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title">{{recents.member.name}}</h5>
-                          <p class="card-text"><small class="">Last updated 3 mins ago</small></p>
                         </div>
+                        <h5 class="card-title">{{ recents.member.name }}</h5>
+                        <p class="card-text"><small class="">Last updated 3 mins ago</small></p>
                       </div>
                     </div>
                   </div>
