@@ -123,7 +123,6 @@ export default {
 
       // Simpan data member ke dalam variabel members
       this.recentLive = data.recents;
-      console.log(this.recentLive)
     } catch (error) {
       console.error('Gagal mengambil data:', error);
     }
