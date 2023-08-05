@@ -59,12 +59,12 @@
           </div>
 
           <div class="col-md-3">
-            <div v-for="recents in recentLive" :key="recents._id">
-              <div class="card rounded-4 shadow" style="background-color: #282b30;">
-                <div class="card-body text-light">
-                  <h5>Recent Live</h5>
-                  <div class="card mt-3 text-light"
-                    style="max-width: 540px; background-color: rgba(30, 33, 36, 0); border-color: rgba(30, 33, 36, 0);">
+            <div class="card rounded-4 shadow" style="background-color: #282b30;">
+              <div class="card-body text-light">
+                <h5>Recent Live</h5>
+                <div class="card mt-3 text-light"
+                  style="max-width: 540px; background-color: rgba(30, 33, 36, 0); border-color: rgba(30, 33, 36, 0);">
+                  <div v-for="recents in recentLive" :key="recents._id">
                     <div class="row g-0">
                       <div class="col-md-4">
                         <img :src="recents.member.img" class="img-fluid rounded-start" alt="...">
