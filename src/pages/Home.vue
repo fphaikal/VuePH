@@ -62,15 +62,15 @@
             <div class="card rounded-4 shadow" style="background-color: #282b30;">
               <div class="card-body text-light">
                 <h5>Recent Live</h5>
-                <div v-for="recents in recentLive" :key="recents.data_id">
+                <div v-for="recents in members" :key="recents._id">
                   <div class="card mt-3 text-light" style="max-width: 540px; background-color: rgba(30, 33, 36, 0); border-color: rgba(30, 33, 36, 0);">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img :src="recents.img_alt" class="img-fluid rounded-start" alt="...">
+                        <img :src="recents.member.img_alt" class="img-fluid rounded-start" alt="...">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title">{{recents.name}}</h5>
+                          <h5 class="card-title">{{recents.member.name}}</h5>
                           <p class="card-text"><small class="">Last updated 3 mins ago</small></p>
                         </div>
                       </div>
@@ -89,15 +89,15 @@
 <style scoped></style>
 
 <script>
-import { getShowroomData, getRecentLive } from '../components/api';
-
+import { getShowroomData } from '../components/api';
+import axios from 'axios'
 export default {
   data() {
     return {
       allMembers: [],
       onlivesData: [],
       traineeData: [],
-      recentLive: [],
+      members: [],
       loading: true, // Mulai dengan menampilkan loading
 
     };
@@ -110,10 +110,22 @@ export default {
     ]);
     this.onlivesData = await getShowroomData('rooms/onlives');
     this.traineeData = await getShowroomData('rooms/trainee');
-    this.recentLive = await getRecentLive('showroom/recent?sort=date&page=1&filter=active&order=-1&perpage=30')
 
     this.allMembers = [...members, ...academyData];
     this.loading = false;
+
+    try {
+      const apiUrl = '/api/cors?url=https://dc.crstlnz.site/api/showroom/recent?sort=date&page=1&filter=active&order=-1&perpage=1';
+      const response = await axios.get(apiUrl);
+
+      // Dapatkan data dari properti "recents" dalam respon
+      const data = response.data.recents;
+
+      // Ambil data pertama dari array data sebagai member
+      this.members = data[0].member;
+    } catch (error) {
+      console.error('Gagal mengambil data:', error);
+    }
   },
 };
 </script>
