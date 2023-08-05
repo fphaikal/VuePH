@@ -62,7 +62,7 @@
             <div class="card rounded-4 shadow" style="background-color: #282b30;">
               <div class="card-body text-light">
                 <h5>Recent Live</h5>
-                <div v-for="recents in members" :key="recents._id">
+                <div v-for="recents in recentLive" :key="recents._id">
                   <div class="card mt-3 text-light" style="max-width: 540px; background-color: rgba(30, 33, 36, 0); border-color: rgba(30, 33, 36, 0);">
                     <div class="row g-0">
                       <div class="col-md-4">
@@ -97,7 +97,7 @@ export default {
       allMembers: [],
       onlivesData: [],
       traineeData: [],
-      members: [],
+      recentLive: [],
       loading: true, // Mulai dengan menampilkan loading
 
     };
@@ -122,8 +122,8 @@ export default {
       const data = await getRecentLive(page, perpage);
 
       // Simpan data member ke dalam variabel members
-      this.members = data.recents;
-      console.log(members)
+      this.recentLive = data.recents;
+      console.log(recentLive)
     } catch (error) {
       console.error('Gagal mengambil data:', error);
     }
