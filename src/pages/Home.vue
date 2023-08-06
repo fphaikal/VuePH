@@ -113,18 +113,22 @@ export default {
     this.allMembers = [...members, ...academyData];
     this.loading = false;
 
+  },
+  async created() {
     try {
-      // Panggil fungsi getRecentMembers dari file api.js untuk mengambil data
-      const data = await getRecentLive();
+      const sort = 'date';
+      const page = 1;
+      const filter = 'active';
+      const order = -1;
+      const perpage = 10;
 
-      // Simpan data member ke dalam variabel members
-      this.recentLive = data.recents;
-      // Tampilkan data di console log
-      console.log(this.members);
+      const response = await getRecentLive(sort, page, filter, order, perpage);
+
+      // Setelah mendapatkan data, masukkan ke dalam data showrooms
+      this.recentLive = response.data;
+      console.log(this.recentLive)
     } catch (error) {
-      console.error('Gagal mengambil data:', error);
-      // Menampilkan pesan error jika gagal mengambil data
-      this.error = 'Gagal mengambil data dari server';
+      console.error('Gagal mengambil data showrooms:', error);
     }
   },
 };
