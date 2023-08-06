@@ -3,7 +3,7 @@
     <div class="full-height-section text-light" style="background-color: #1e2124;">
       <div class="container">
         <div v-if="memberInfo">
-          <div class="row mt-3">
+          <div class="row mt-3 ">
             <div class="col-md-1 text-center my-auto">
               <img :src="memberInfo.image_square" class="img-fluid rounded-circle mobile-image" alt="">
             </div>
@@ -16,17 +16,16 @@
             </div>
           </div>
         </div>
+        <div v-else>
+          <p class="my-auto text-center">Loading...</p>
+        </div>
         <hr>
 
         <div class="row mt-3 g-3">
           <div class="col-md-4">
             <div v-if="memberInfo">
-              <div class="card rounded-4 shadow mb-2">
-                <img :src="memberInfo.image" class="card-img rounded-4 shadow" alt="Test">
-              </div>
-            </div>
-            <div class="card rounded-4 shadow mb-2" style="background-color: #282b30;">
-              <div v-if="memberInfo">
+              <div class="card rounded-4 shadow mb-2" style="background-color: #282b30;">
+                <img :src="memberInfo.image" class="card-img rounded-top-4 shadow" alt="Test">
                 <div v-if="memberInfo.is_onlive">
                   <div class="card-body text-light text-center"><b>Room Sedang Online</b></div>
                 </div>
@@ -35,26 +34,31 @@
                 </div>
               </div>
             </div>
+            <div v-else>
+              <p class="my-auto text-center">Loading...</p>
+            </div>
+
             <hr>
             <div v-if="onlivesData.length > 0">
-                  <div class="container-fluid rounded-4 mt-2 " style="background-color: #282b30;">
-                    <div v-for="live in onlivesData" :key="live.room_id">
-                      <div class="card text-light shadow" style="background-color: #282b30;">
-                        <img :src="live.image_url" :alt="live.main_name" class="card-img-top">
-                        <div class="card-body">
-                          <div class="card-title"><b>{{ live.main_name }}</b></div>
-                        </div>
-                      </div>
+              <div v-for="live in onlivesData" :key="live.room_id" class="col-md-4">
+                <a :href="'https://www.showroom-live.com/room/profile?room_id=' + live.room_id" target="_blank">
+                  <div class="card rounded-4" style="background-color: #1e2124;">
+                    <img :src="live.image" class="card-img rounded-4" :alt="live.main_name">
+                    <div class="card-body text-light">
+                      <h5 class="card-title">{{ live.main_name }}</h5>
+                      <p class="card-text">Viewers: {{ live.view_num }}</p>
                     </div>
                   </div>
+                </a>
+              </div>
+            </div>
+            <div v-else>
+              <div class="card rounded-4" style="background-color: #282b30;">
+                <div class="card-body text-light">
+                  <p class="text-center my-auto">No onlives available</p>
                 </div>
-                <div v-else>
-                  <div class="container-fluid rounded-4 mt-2 shadow" style="background-color: #282b30;">
-                    <div class="p-5 text-center">
-                      <p>Tidak Ada Member Yang Live</p>
-                    </div>
-                  </div>
-                </div>
+              </div>
+            </div>
           </div>
           <div class="col-md-8">
             <div v-if="memberInfo">
@@ -81,6 +85,19 @@
                   </div>
                 </div>
               </div>
+              <div class="row mt-2">
+                <div class="col-md-12">
+                  <a href="https://www.youtube.com/watch?v=2wvqBMjPmqk&pp=ygUYcG9ueXRhaWwgdG8gc2h1c2h1IGprdDQ4"
+                    target="_blank">
+                    <img class="img-fluid rounded-4"
+                      src="https://res.cloudinary.com/haymzm4wp/image/upload/h_400,f_auto/v1689086407/assets/img/jkt48banner_nvyix5.png"
+                      alt="Ponytail and Shu-Shu | New MV JKT48">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div v-else>
+              <p class="my-auto text-center">Loading...</p>
             </div>
           </div>
         </div>
@@ -126,6 +143,7 @@ export default {
         `rooms/profile/${roomId}/SQghJNnUPttxNbRudspw5Oo9Cnf_X16jFXvKjRkl_QrQzgzQcHvr0jlLoI7JL02z`
       );
 
+      this.onlivesData = await this.getOnlivesData();
       this.zodiac = this.getZodiacFromDescription(this.memberInfo.description);
 
       if (this.memberInfo && this.memberInfo.is_onlive) {
@@ -175,6 +193,16 @@ export default {
 
       // Jika tanggal lahir tidak ditemukan, kembalikan teks default
       return 'Tanggal Lahir Tidak Diketahui';
+    },
+    async getOnlivesData() {
+      try {
+        const response = await fetch('https://jkt48-showroom-api.vercel.app/api/rooms/onlives');
+        const data = await response.json();
+        return data.data;
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
     },
   },
 };

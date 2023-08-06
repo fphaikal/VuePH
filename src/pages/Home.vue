@@ -3,11 +3,11 @@
     <div class="full-height-section first text-light" style="background-color: #1e2124;">
       <div class="container-fluid">
         <div class="row g-2">
-          <div class="col-md-8 ms-md-5">
+          <div class="col-md-8 col-sm-12 ms-md-5">
             <a href="https://www.youtube.com/watch?v=2wvqBMjPmqk&pp=ygUYcG9ueXRhaWwgdG8gc2h1c2h1IGprdDQ4" target="_blank">
-              <img class="img-fluid rounded-4"
+              <img class="img-fluid" 
                 src="https://res.cloudinary.com/haymzm4wp/image/upload/h_400,f_auto/v1689086407/assets/img/jkt48banner_nvyix5.png"
-                alt="">
+                alt="Ponytail and Shu-Shu | New MV JKT48">
             </a>
 
             <div class="row mt-4">
@@ -15,7 +15,7 @@
               <div class="col-md-12 mt-2">
                 <div class="container rounded-4 p-4" style="background-color: #282b30;">
                   <div v-if="loading">
-                    <p>Loading...</p>
+                    <p class="text-center my-auto">Loading...</p>
                   </div>
                   <div v-else>
                     <div class="row">
@@ -33,7 +33,7 @@
                         </div>
                       </div>
                       <div v-else>
-                        <p>No onlives available</p>
+                        <p class="text-center my-auto">No onlives available</p>
                       </div>
                     </div>
                   </div>
