@@ -16,7 +16,7 @@ window.addEventListener("scroll", function() {
 <template>
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand fs-4 text-light" href="/"><b>{{msg}}</b></a>
+            <a class="navbar-brand fs-4 text-light" href="/"><b>{{msg}}</b><small style="font-size: 50%; color: #585858;">@fphaikal</small></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon text-light"></span>
