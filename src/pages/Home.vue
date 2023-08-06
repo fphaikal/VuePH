@@ -79,6 +79,19 @@
               </div>
             </div>
           </div>
+          <div>
+            <h2>Recent Showrooms</h2>
+            <ul v-if="recents.length">
+              <li v-for="recent in recents" :key="recent._id">
+                <img :src="recent.member.img" :alt="recent.member.img_alt" />
+                <p>{{ recent.member.name }}</p>
+                <!-- Add other data you want to display from the API response -->
+              </li>
+            </ul>
+            <div v-else>
+              <p>Loading...</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -113,22 +126,15 @@ export default {
 
     this.allMembers = [...members, ...academyData];
     this.loading = false;
-
-    try {
-      const response = await axios.get('/api/showroom/recent', {
-        params: {
-          sort: 'date',
-          page: 1,
-          filter: 'active',
-          order: -1,
-          perpage: 10
-        }
-      });
-
-      this.recentLive = response.data;
-    } catch (error) {
-      console.error('Error fetching recent showroom data:', error);
-    }
   },
+  async created() {
+    try {
+      const response = await fetch('/api/showroom/recent?sort=date&page=1&filter=active&order=-1&perpage=10');
+      const data = await response.json();
+      this.recentLive = data.recents;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
 };
 </script>
