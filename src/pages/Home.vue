@@ -12,23 +12,29 @@
 
             <div class="row mt-4">
               <h3>Live</h3>
-              <div class="col-md-12">
-                <div v-if="onlivesData.length > 0">
-                  <div class="container-fluid rounded-4 mt-2" style="background-color: #282b30;">
-                    <div v-for="live in onlivesData" :key="live.room_id">
-                      <div class="card text-light shadow" style="background-color: #282b30;">
-                        <img :src="live.image_url" :alt="live.main_name" class="card-img-top">
-                        <div class="card-body">
-                          <div class="card-title"><b>{{ live.main_name }}</b></div>
+              <div class="col-md-12 mt-2">
+                <div class="container rounded-4 p-4" style="background-color: #282b30;">
+                  <div v-if="loading">
+                    <p>Loading...</p>
+                  </div>
+                  <div v-else>
+                    <div class="row">
+                      <div v-if="onlivesData.length > 0">
+                        <div v-for="live in onlivesData" :key="live.room_id" class="col-md-4">
+                          <a :href="'https://www.showroom-live.com/room/profile?room_id=' + live.room_id" target="_blank">
+                            <div class="card rounded-4" style="background-color: #1e2124;">
+                              <img :src="live.image" class="card-img rounded-4" :alt="live.main_name">
+                              <div class="card-body text-light">
+                                <h5 class="card-title">{{ live.main_name }}</h5>
+                                <p class="card-text">Viewers: {{ live.view_num }}</p>
+                              </div>
+                            </div>
+                          </a>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div v-else>
-                  <div class="container-fluid rounded-4 mt-2 shadow" style="background-color: #282b30;">
-                    <div class="p-5 text-center">
-                      <p>Tidak Ada Member Yang Live</p>
+                      <div v-else>
+                        <p>No onlives available</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -46,7 +52,8 @@
                   <div v-for="user in allMembers" :key="user.id" class="col-md-4 col-sm-6 mt-1 mb-1"
                     @click="redirectToMemberInfo(user.id)">
                     <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
-                      <img :src="user.image_url ?? user.image" class="card-img-top" :alt="user.name ?? user.main_name">
+                      <img :src="user.image_url ?? user.image" class="card-img rounded-4"
+                        :alt="user.name ?? user.main_name">
                       <div class="card-body">
                         <p class="card-title"><b>{{ user.name ?? user.main_name }}</b></p>
                       </div>
@@ -92,8 +99,8 @@ export default {
       getShowroomData('rooms'),
       getShowroomData('rooms/academy'),
     ]);
-    this.onlivesData = await getShowroomData('rooms/onlives');
     this.traineeData = await getShowroomData('rooms/trainee');
+    this.onlivesData = await this.getOnlivesData();
 
     this.allMembers = [...members, ...academyData];
     this.loading = false;
@@ -103,6 +110,16 @@ export default {
     // Fungsi untuk mengalihkan ke halaman informasi member
     redirectToMemberInfo(roomId) {
       this.$router.push({ path: `/member/${roomId}` });
+    },
+    async getOnlivesData() {
+      try {
+        const response = await fetch('https://jkt48-showroom-api.vercel.app/api/rooms/onlives');
+        const data = await response.json();
+        return data.data;
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
     },
   },
 };
