@@ -5,7 +5,7 @@
         <div class="row mt-4">
           <div class="col-md-8">
             <div v-if="memberInfo">
-              <h2>{{ memberInfo.main_name }} Room Info</h2>
+              <h2>{{ memberInfo.main_name }}Room Info</h2>
               <div class="row g-2 mt-3">
                 <div class="col-md-4">
                   <div class="card" style="background-color: #282b30;">
@@ -17,9 +17,14 @@
                     <div class="card-body text-light">Zodiac Signs: <br><b>{{ zodiac }}</b></div>
                   </div>
                 </div>
-                <div class="col-md-4">
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-12">
                   <div class="card" style="background-color: #282b30;">
-                    <div class="card-body text-light">{{ birthday }}</div>
+                    <div class="card-body text-light">
+                      <h5>Deskripsi</h5>
+                      <p class="mt-3" v-html="formatDescription(memberInfo.description)"></p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -79,6 +84,15 @@ export default {
       const regex = /Zodiac signs: ([A-Za-z]+)/; // RegEx untuk mencari zodiac
       const match = description.match(regex);
       return match ? match[1] : ''; // Ambil hasil RegEx, jika tidak ada kembalikan string kosong
+    },
+    formatDescription(description) {
+      // Mengganti karakter baris baru (\n) dengan tag HTML <br>
+      const unwantedKeys = ['Birthday', 'Zodiac'];
+      const lines = description.split('\n');
+      const filteredLines = lines.filter(line => !unwantedKeys.some(key => line.includes(key)));
+      const sanitizedLines = filteredLines.map(line => line.replace(/"/g, '')); // Menghapus tanda petik
+      const filteredDescription = sanitizedLines.join('<br>');
+      return filteredDescription;
     },
   },
 };
