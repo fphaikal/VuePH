@@ -3,7 +3,7 @@
     <div class="full-height-section first text-light" style="background-color: #1e2124;">
       <div class="container-fluid">
         <div class="row g-2">
-          <div class="col-md-8 ms-5">
+          <div class="col-md-8 ms-md-5">
             <a href="https://www.youtube.com/watch?v=2wvqBMjPmqk&pp=ygUYcG9ueXRhaWwgdG8gc2h1c2h1IGprdDQ4" target="_blank">
               <img class="img-fluid rounded-4"
                 src="https://res.cloudinary.com/haymzm4wp/image/upload/h_400,f_auto/v1689086407/assets/img/jkt48banner_nvyix5.png"
