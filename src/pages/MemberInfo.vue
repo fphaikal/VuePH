@@ -21,11 +21,11 @@
         </div>
         <hr>
 
-        <div class="row mt-3 g-3">
+        <div class="row g-3">
           <div class="col-md-4">
             <div v-if="memberInfo">
               <div class="card rounded-4 shadow mb-2" style="background-color: #282b30;">
-                <img :src="memberInfo.image" class="card-img rounded-top-4 shadow" alt="Test">
+                <img :src="memberInfo.image" class="card-img rounded-top-4 shadow d-none d-md-block" alt="Test">
                 <div v-if="memberInfo.is_onlive">
                   <div class="card-body text-light text-center"><b>Room Sedang Online</b></div>
                 </div>
@@ -85,7 +85,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt-2">
+              <div class="row mt-2 mb-5">
                 <div class="col-md-12">
                   <a href="https://www.youtube.com/watch?v=2wvqBMjPmqk&pp=ygUYcG9ueXRhaWwgdG8gc2h1c2h1IGprdDQ4"
                     target="_blank">
