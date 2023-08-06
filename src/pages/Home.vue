@@ -89,6 +89,7 @@
 
 <script>
 import { getShowroomData, getRecentLive } from '../components/api';
+import axios from 'axios'
 
 export default {
   data() {
@@ -113,22 +114,20 @@ export default {
     this.allMembers = [...members, ...academyData];
     this.loading = false;
 
-  },
-  async created() {
     try {
-      const sort = 'date';
-      const page = 1;
-      const filter = 'active';
-      const order = -1;
-      const perpage = 10;
+      const response = await axios.get('/api/showroom/recent', {
+        params: {
+          sort: 'date',
+          page: 1,
+          filter: 'active',
+          order: -1,
+          perpage: 10
+        }
+      });
 
-      const response = await getRecentLive(sort, page, filter, order, perpage);
-
-      // Setelah mendapatkan data, masukkan ke dalam data showrooms
       this.recentLive = response.data;
-      console.log(this.recentLive)
     } catch (error) {
-      console.error('Gagal mengambil data showrooms:', error);
+      console.error('Error fetching recent showroom data:', error);
     }
   },
 };
