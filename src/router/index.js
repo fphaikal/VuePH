@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MemberInfo from '../pages/Member.vue' //halaman informasi user
+import MemberInfo from '../pages/MemberInfo.vue' //halaman informasi user
 import HomeView from '../pages/Home.vue'
 
 const router = createRouter({
@@ -19,7 +19,7 @@ const router = createRouter({
       component: () => import('../pages/AboutView.vue')
     },
     {
-      path: '/member/:id',
+      path: '/member/:roomId',
       name: 'MemberInfo',
       component: MemberInfo
     }

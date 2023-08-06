@@ -1,8 +1,1 @@
-{
-  "routes": [
-    {
-      "src": "/api/showroom/recent",
-      "dest": "/src/components/showroom.js"
-    }
-  ]
-}
+

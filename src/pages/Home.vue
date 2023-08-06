@@ -43,11 +43,10 @@
               </div>
               <div v-else>
                 <div class="row g-2">
-                  <div v-for="user in allMembers" :key="user.id" class="col-md-4 col-sm-6 mt-1 mb-1">
+                  <div v-for="user in allMembers" :key="user.id" class="col-md-4 col-sm-6 mt-1 mb-1"
+                    @click="redirectToMemberInfo(user.id)">
                     <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
-                      <a :href="'https://www.showroom-live.com/room/profile?room_id=' + user.id" target="_blank">
-                        <img :src="user.image_url ?? user.image" class="card-img-top" :alt="user.name ?? user.main_name">
-                      </a>
+                      <img :src="user.image_url ?? user.image" class="card-img-top" :alt="user.name ?? user.main_name">
                       <div class="card-body">
                         <p class="card-title"><b>{{ user.name ?? user.main_name }}</b></p>
                       </div>
@@ -59,37 +58,11 @@
           </div>
 
           <div class="col-md-3">
-            <div class="container rounded-4 shadow" style="background-color: #282b30;">
-              <h5>Recent Live</h5>
-              <div class="card mt-3 text-light"
-                style="max-width: 540px; background-color: rgba(30, 33, 36, 0); border-color: rgba(30, 33, 36, 0);">
-                <div class="row g-0">
-                  <div v-for="recents in recentLive" :key="recents._id">
-                    <div class="col-md-4">
-                      <img :src="recents.member.img" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                      <div class="card-body">
-                      </div>
-                      <h5 class="card-title">{{ recents.member.name }}</h5>
-                      <p class="card-text"><small class="">Last updated 3 mins ago</small></p>
-                    </div>
-                  </div>
-                </div>
+            <div class="card rounded-4 shadow" style="background-color: #282b30;">
+              <div class="card-body text-light">
+                <h5>Recent Live</h5>
               </div>
-            </div>
-          </div>
-          <div>
-            <h2>Recent Showrooms</h2>
-            <ul v-if="recents.length">
-              <li v-for="recent in recents" :key="recent._id">
-                <img :src="recent.member.img" :alt="recent.member.img_alt" />
-                <p>{{ recent.member.name }}</p>
-                <!-- Add other data you want to display from the API response -->
-              </li>
-            </ul>
-            <div v-else>
-              <p>Loading...</p>
+
             </div>
           </div>
         </div>
@@ -101,8 +74,7 @@
 <style scoped></style>
 
 <script>
-import { getShowroomData, getRecentLive } from '../components/api';
-import axios from 'axios'
+import { getShowroomData } from '../components/api';
 
 export default {
   data() {
@@ -110,7 +82,6 @@ export default {
       allMembers: [],
       onlivesData: [],
       traineeData: [],
-      recentLive: [],
       loading: true, // Mulai dengan menampilkan loading
 
     };
@@ -127,18 +98,12 @@ export default {
     this.allMembers = [...members, ...academyData];
     this.loading = false;
   },
-  async created() {
-    try {
-      const response = await fetch('/api/showroom/recent?sort=date&page=1&filter=active&order=-1&perpage=10');
-      if (!response.ok) {
-        throw new Error('Failed to fetch data from the API');
-      }
-      const data = await response.json();
-      this.recentLive = data.recents || []; // Use empty array if 'recents' is undefined in the response
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      // Handle the error appropriately, e.g., show an error message to the user
-    }
-  }
+
+  methods: {
+    // Fungsi untuk mengalihkan ke halaman informasi member
+    redirectToMemberInfo(roomId) {
+      this.$router.push({ path: `/member/${roomId}` });
+    },
+  },
 };
 </script>
