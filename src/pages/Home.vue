@@ -130,10 +130,14 @@ export default {
   async created() {
     try {
       const response = await fetch('/api/showroom/recent?sort=date&page=1&filter=active&order=-1&perpage=10');
+      if (!response.ok) {
+        throw new Error('Failed to fetch data from the API');
+      }
       const data = await response.json();
-      this.recentLive = data.recents;
+      this.recentLive = data.recents || []; // Use empty array if 'recents' is undefined in the response
     } catch (error) {
       console.error('Error fetching data:', error);
+      // Handle the error appropriately, e.g., show an error message to the user
     }
   }
 };
