@@ -20,20 +20,22 @@
                   <div v-else>
                     <div class="row">
                       <div v-if="onlivesData.length > 0">
-                        <div v-for="live in onlivesData" :key="live.room_id" class="col-md-4">
-                          <a :href="'https://www.showroom-live.com/r/' + live.room_url_key" target="_blank">
-                            <div class="card rounded-4" style="background-color: #1e2124;">
-                              <img :src="live.image" class="card-img rounded-4" :alt="live.main_name">
-                              <div class="card-body text-light">
-                                <h5 class="card-title">{{ live.main_name }}</h5>
-                                <p class="card-text">Viewers: {{ live.view_num }}</p>
+                        <div class="row g-2">
+                          <div v-for="live in onlivesData" :key="live.room_id" class="col-md-4">
+                            <a :href="'https://www.showroom-live.com/r/' + live.room_url_key" target="_blank">
+                              <div class="card rounded-4" style="background-color: #1e2124;">
+                                <img :src="live.image" class="card-img rounded-4" :alt="live.main_name">
+                                <div class="card-body text-light">
+                                  <h5 class="card-title">{{ live.main_name }}</h5>
+                                  <p class="card-text">Viewers: {{ live.view_num }}</p>
+                                </div>
                               </div>
-                            </div>
-                          </a>
+                            </a>
+                          </div>
                         </div>
                       </div>
                       <div v-else>
-                        <p class="text-center my-auto">No onlives available</p>
+                        <p class="text-center my-auto">Tidak Ada Member yang LIVE.</p>
                       </div>
                     </div>
                   </div>
@@ -48,7 +50,7 @@
               <div class="col-md-5 my-auto d-flex justify-content-end">
                 <button class="btn btn-success me-1 btn-sm rounded-pill" @click="showAllMembers">All Members</button>
                 <button class="btn btn-danger me-1 btn-sm rounded-pill" @click="showMembers">Members</button>
-                <button class="btn btn-warning btn-sm rounded-pill" @click="showAcademy">Gen 10</button>
+                <button class="btn btn-warning btn-sm rounded-pill" @click="showAcademy">Trainee</button>
               </div>
 
               <hr>
@@ -64,6 +66,25 @@
                         :alt="user.name ?? user.main_name">
                       <div class="card-body">
                         <p class="card-title"><b>{{ user.name ?? user.main_name }}</b></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="mt-5">Room Trainee</h3>
+              <hr>
+              <div v-if="loading">
+                <p>Loading...</p>
+              </div>
+              <div v-else>
+                <div class="row g-2">
+                  <div v-for="trainee in traineeData" :key="trainee.room_id" class="col-md-4 col-sm-6 mt-1 mb-1"
+                    @click="redirectToMemberInfo(trainee.room_id)">
+                    <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
+                      <img :src="trainee.image" class="card-img rounded-4" alt="" srcset="">
+                      <div class="card-body">
+                        <p class="card-title"><b>{{ trainee.main_name }}</b></p>
                       </div>
                     </div>
                   </div>
@@ -150,12 +171,12 @@ export default {
     },
 
     truncateDescription(description, maxLength) {
-    const words = description.split(' ');
-    if (words.length > maxLength) {
-      return words.slice(0, maxLength).join(' ') + '...';
-    }
-    return description;
-  },
+      const words = description.split(' ');
+      if (words.length > maxLength) {
+        return words.slice(0, maxLength).join(' ') + '...';
+      }
+      return description;
+    },
   },
 };
 </script>
