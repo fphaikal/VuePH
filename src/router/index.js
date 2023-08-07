@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MemberInfo from '../pages/MemberInfo.vue' //halaman informasi user
 import HomeView from '../pages/Home.vue'
+import SetlistInfo from '../pages/SetlistInfo.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,7 +22,12 @@ const router = createRouter({
     {
       path: '/member/:roomId',
       name: 'MemberInfo',
-      component: MemberInfo
+      component: MemberInfo,
+    },
+    {
+      path: '/setlist/:setlistId',
+      name: 'SetlistInfo',
+      component: SetlistInfo,
     }
   ]
 })

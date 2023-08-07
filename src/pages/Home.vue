@@ -89,7 +89,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>              
             </div>
           </div>
 
@@ -98,7 +98,11 @@
               <div class="card-body text-light">
                 <h5>Theater Schedule</h5>
                 <div v-if="loading">
-                  <p>Loading...</p>
+                  <div class="card rounded-4 mt-3" style="background-color: #1e2124;">
+                    <div class="card-body text-light">
+                      <p class="text-center my-auto">Loading...</p>
+                    </div>
+                  </div>
                 </div>
                 <div v-else>
                   <div v-for="theater in theaterSchedules" :key="theater._id">
@@ -152,6 +156,8 @@ export default {
 
     this.allMembers = [...members, ...academyData];
     this.loading = false;
+
+
   },
 
   methods: {
