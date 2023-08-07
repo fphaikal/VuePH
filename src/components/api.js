@@ -18,7 +18,7 @@ const getShowroomData = async (endpoint) => {
 
 // Function untuk mengambil data dari API Showroom Admin
 const apiShowroomAdmin = axios.create({
-  baseURL: 'https://showroom-admin.ikhbaldwiyan.repl.co',
+  baseURL: 'https://showroom-admin.ikhbaldwiyan.repl.co/',
 });
 
 const getShowroomAdminData = async (endpoint) => {
