@@ -27,10 +27,10 @@ window.addEventListener("scroll", function() {
                         <a class="nav-link text-light" aria-current="page" href="">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Features</a>
+                        <a class="nav-link text-light" href="/theater-schedules">Theater Schedules</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Pricing</a>
+                        <a class="nav-link text-light" href="/">About</a>
                     </li>
                 </ul>
             </div>

@@ -12,7 +12,7 @@
           <div class="col-md-8 col-sm-12 ms-md-5">
             <a class="d-none d-md-block"
               href="https://www.youtube.com/watch?v=2wvqBMjPmqk&pp=ygUYcG9ueXRhaWwgdG8gc2h1c2h1IGprdDQ4" target="_blank">
-              <img class="img-fluid"
+              <img class="img-fluid rounded-4"
                 src="https://res.cloudinary.com/haymzm4wp/image/upload/h_400,f_auto/v1689086407/assets/img/jkt48banner_nvyix5.png"
                 alt="Ponytail and Shu-Shu | New MV JKT48">
             </a>
