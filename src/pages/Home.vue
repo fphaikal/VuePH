@@ -1,10 +1,17 @@
 <template>
   <main>
+    <a class="d-md-none ratio ratio-21x9" style="position: relative"
+      href="https://www.youtube.com/watch?v=2wvqBMjPmqk&pp=ygUYcG9ueXRhaWwgdG8gc2h1c2h1IGprdDQ4" target="_blank">
+      <img class="img-fluid"
+        src="https://res.cloudinary.com/haymzm4wp/image/upload/h_400,f_auto/v1689086407/assets/img/jkt48banner_nvyix5.png"
+        alt="Ponytail and Shu-Shu | New MV JKT48" style="object-fit: cover; position: absolute; width: 100%; height: 100%; top: 0; left: 0;">
+    </a>
     <div class="full-height-section first text-light" style="background-color: #1e2124;">
       <div class="container-fluid">
         <div class="row g-2">
           <div class="col-md-8 col-sm-12 ms-md-5">
-            <a href="https://www.youtube.com/watch?v=2wvqBMjPmqk&pp=ygUYcG9ueXRhaWwgdG8gc2h1c2h1IGprdDQ4" target="_blank">
+            <a class="d-none d-md-block"
+              href="https://www.youtube.com/watch?v=2wvqBMjPmqk&pp=ygUYcG9ueXRhaWwgdG8gc2h1c2h1IGprdDQ4" target="_blank">
               <img class="img-fluid"
                 src="https://res.cloudinary.com/haymzm4wp/image/upload/h_400,f_auto/v1689086407/assets/img/jkt48banner_nvyix5.png"
                 alt="Ponytail and Shu-Shu | New MV JKT48">
@@ -59,7 +66,7 @@
               </div>
               <div v-else>
                 <div class="row g-2">
-                  <div v-for="user in allMembers" :key="user.id ?? user.room_id" class="col-md-4 col-sm-6 mt-1 mb-1"
+                  <div v-for="user in allMembers" :key="user.id ?? user.room_id" class="col-md-4 col-sm-3 col-6 mt-1 mb-1"
                     @click="redirectToMemberInfo(user.id ?? user.room_id)">
                     <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
                       <img :src="user.image_url ?? user.image" class="card-img rounded-4"
@@ -89,7 +96,7 @@
                     </div>
                   </div>
                 </div>
-              </div>              
+              </div>
             </div>
           </div>
 
@@ -105,7 +112,8 @@
                   </div>
                 </div>
                 <div v-else>
-                  <div v-for="theater in theaterSchedules" :key="theater._id">
+                  <div v-for="theater in filteredRecents" :key="theater._id"
+                    @click="redirectToSetlistInfo(theater._id ?? theater.setlist.name)">
                     <div class="card mt-3 rounded-4" style="background-color: #1e2124; ">
                       <div class="ratio ratio-16x9 " style="position: relative;">
                         <img :src="theater.setlist.image" class="card-img-top rounded-4"
@@ -160,10 +168,21 @@ export default {
 
   },
 
+  computed: {
+    filteredRecents() {
+      const currentDate = new Date();
+      return this.theaterSchedules.filter(theater => new Date(theater.showDate) > currentDate);
+    },
+  },
+
   methods: {
     // Fungsi untuk mengalihkan ke halaman informasi member
     redirectToMemberInfo(roomId) {
       this.$router.push({ path: `/member/${roomId}` });
+    },
+
+    redirectToSetlistInfo(setlistId) {
+      this.$router.push({ path: `/setlist/${setlistId}` });
     },
     async getOnlivesData() {
       try {
@@ -182,6 +201,20 @@ export default {
         return words.slice(0, maxLength).join(' ') + '...';
       }
       return description;
+    },
+
+    formatLocalDate(dateString) {
+      const date = new Date(dateString);
+      const options = {
+        timeZone: 'Asia/Jakarta', // Zona waktu Indonesia (WIB)
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      };
+      return date.toLocaleString('id-ID', options);
     },
   },
 };
