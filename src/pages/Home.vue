@@ -112,7 +112,7 @@
                   </div>
                 </div>
                 <div v-else>
-                  <div v-for="theater in filteredRecents" :key="theater._id"
+                  <a v-for="theater in filteredRecents" :key="theater._id"
                     @click="redirectToSetlistInfo(theater._id ?? theater.setlist.name)">
                     <div class="card mt-3 rounded-4" style="background-color: #1e2124; ">
                       <div class="ratio ratio-16x9 " style="position: relative;">
@@ -123,10 +123,9 @@
                       <div class="card-body text-light">
                         <h5 class="card-title">{{ theater.setlist.name }}</h5>
                         <p class="card-text">{{ truncateDescription(theater.setlist.description, 15) }}</p>
-                        <a href="#" class="btn btn-light rounded-pill btn-sm">Go To Detail</a>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>
