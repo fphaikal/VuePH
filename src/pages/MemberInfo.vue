@@ -40,16 +40,21 @@
 
             <hr>
             <div v-if="onlivesData.length > 0">
-              <div v-for="live in onlivesData" :key="live.room_id" class="col-md-4">
-                <a :href="'https://www.showroom-live.com/room/profile?room_id=' + live.room_id" target="_blank">
-                  <div class="card rounded-4" style="background-color: #1e2124;">
-                    <img :src="live.image" class="card-img rounded-4" :alt="live.main_name">
-                    <div class="card-body text-light">
-                      <h5 class="card-title">{{ live.main_name }}</h5>
-                      <p class="card-text">Viewers: {{ live.view_num }}</p>
-                    </div>
+              <div class="card rounded-4" style="background-color: #282b30;">
+                <div class="card-body">
+                  <h5 class="text-light mb-3">Room Online</h5>
+                  <div v-for="live in onlivesData" :key="live.room_id" class="">
+                    <a :href="'https://www.showroom-live.com/room/profile?room_id=' + live.room_id" target="_blank">
+                      <div class="card rounded-4" style="background-color: #1e2124;">
+                        <img :src="live.image" class="card-img rounded-4" :alt="live.main_name">
+                        <div class="card-body text-light">
+                          <h5 class="card-title">{{ live.main_name }}</h5>
+                          <p class="card-text">Viewers: {{ live.view_num }}</p>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
             <div v-else>
@@ -134,7 +139,7 @@ export default {
     };
   },
   async mounted() {
-    this.onlivesData = await getShowroomData('rooms/onlives');
+    this.onlivesData = await this.getOnlivesData();
 
     try {
       const roomId = this.$route.params.roomId;
@@ -155,6 +160,17 @@ export default {
     }
   },
   methods: {
+    async getOnlivesData() {
+      try {
+        const response = await fetch('https://jkt48-showroom-api.vercel.app/api/rooms/onlives');
+        const data = await response.json();
+        return data.data;
+      } catch (error) {
+        console.error(error);
+        return [];
+      }
+    },
+
     getZodiacFromDescription(description) {
       const zodiacIndex = description.indexOf('Zodiac signs:');
       if (zodiacIndex !== -1) {

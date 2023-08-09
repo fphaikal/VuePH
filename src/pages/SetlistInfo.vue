@@ -94,8 +94,8 @@
                                     <div class="row g-2 mt-2">
                                         <div v-for="member in setlistInfo.memberList" :key="member._id"
                                             class="col-md-4 col-sm-3 col-4">
-                                            <div class="card shadow" style="background-color: #1e2124">
-                                                <img :src="member.image" class="card-img-top" style="" alt="Member Image" />
+                                            <div class="card shadow rounded-4" style="background-color: #1e2124">
+                                                <img :src="member.image" class="card-img-top rounded-top-4" style="" alt="Member Image" />
                                                 <div class="card-body">
                                                     <p class="my-auto text-center text-light card-title">
                                                         {{ member.stage_name.trim() }}
