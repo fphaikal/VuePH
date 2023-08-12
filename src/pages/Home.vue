@@ -1,3 +1,10 @@
+<script setup>
+import liveSection from '../components/Home/liveSection.vue';
+import schedulesSection from '../components/Home/schedulesSection.vue';
+import memberSection from '../components/Home/memberSection.vue';
+import traineeSection from '../components/Home/traineeSection.vue'
+</script>
+
 <template>
   <main>
     <a class="d-md-none ratio ratio-21x9" style="position: relative"
@@ -18,117 +25,18 @@
             </a>
 
             <div class="row mt-4">
-              <h3>Live</h3>
-              <div class="col-md-12 mt-2">
-                <div class="container rounded-4 p-4" style="background-color: #282b30;">
-                  <div v-if="loading">
-                    <p class="text-center my-auto">Loading...</p>
-                  </div>
-                  <div v-else>
-                    <div class="row">
-                      <div v-if="onlivesData.length > 0">
-                        <div class="row g-2">
-                          <div v-for="live in onlivesData" :key="live.room_id" class="col-md-4">
-                            <a :href="'https://www.showroom-live.com/r/' + live.room_url_key" target="_blank">
-                              <div class="card rounded-4" style="background-color: #1e2124;">
-                                <img :src="live.image" class="card-img rounded-4" :alt="live.main_name">
-                                <div class="card-body text-light">
-                                  <h5 class="card-title">{{ live.main_name }}</h5>
-                                  <p class="card-text">Viewers: {{ live.view_num }}</p>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                      <div v-else>
-                        <p class="text-center my-auto">Tidak Ada Member yang LIVE.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <liveSection/>
             </div>
 
             <div class="row mt-4 g-2">
-              <div class="col-md-7 my-auto">
-                <h3>Room Member</h3>
-              </div>
-              <div class="col-md-5 my-auto d-flex justify-content-end">
-                <button class="btn btn-success me-1 btn-sm rounded-pill" @click="showAllMembers">All Members</button>
-                <button class="btn btn-danger me-1 btn-sm rounded-pill" @click="showMembers">Members</button>
-                <button class="btn btn-warning btn-sm rounded-pill" @click="showAcademy">Trainee</button>
-              </div>
+              <memberSection/>
 
-              <hr>
-              <div v-if="loading">
-                <p>Loading...</p>
-              </div>
-              <div v-else>
-                <div class="row g-2">
-                  <div v-for="user in allMembers" :key="user.id ?? user.room_id" class="col-md-4 col-sm-3 col-6 mt-1 mb-1"
-                    @click="redirectToMemberInfo(user.id ?? user.room_id)">
-                    <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
-                      <img :src="user.image_url ?? user.image" class="card-img rounded-4"
-                        :alt="user.name ?? user.main_name">
-                      <div class="card-body">
-                        <p class="card-title"><b>{{ user.name ?? user.main_name }}</b></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <h3 class="mt-5">Room Trainee</h3>
-              <hr>
-              <div v-if="loading">
-                <p>Loading...</p>
-              </div>
-              <div v-else>
-                <div class="row g-2">
-                  <div v-for="trainee in traineeData" :key="trainee.room_id" class="col-md-4 col-sm-6 col-6 mt-1 mb-1"
-                    @click="redirectToMemberInfo(trainee.room_id)">
-                    <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
-                      <img :src="trainee.image" class="card-img rounded-4" alt="" srcset="">
-                      <div class="card-body">
-                        <p class="card-title"><b>{{ trainee.main_name }}</b></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <traineeSection/>
             </div>
           </div>
 
           <div class="col-md-3">
-            <div class="card rounded-4 shadow" style="background-color: #282b30;">
-              <div class="card-body text-light">
-                <h5>Theater Schedule</h5>
-                <div v-if="loading">
-                  <div class="card rounded-4 mt-3" style="background-color: #1e2124;">
-                    <div class="card-body text-light">
-                      <p class="text-center my-auto">Loading...</p>
-                    </div>
-                  </div>
-                </div>
-                <div v-else>
-                  <a v-for="theater in filteredRecents" :key="theater._id"
-                    @click="redirectToSetlistInfo(theater._id ?? theater.setlist.name)">
-                    <div class="card mt-3 rounded-4" style="background-color: #1e2124; ">
-                      <div class="ratio ratio-16x9 " style="position: relative;">
-                        <img :src="theater.setlist.image" class="card-img-top rounded-4"
-                          style="object-fit: cover; position: absolute; width: 100%; height: 100%; top: 0; left: 0;"
-                          alt="...">
-                      </div>
-                      <div class="card-body text-light">
-                        <h5 class="card-title">{{ theater.setlist.name }}</h5>
-                        <p class="card-text">{{ truncateDescription(theater.setlist.description, 15) }}</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
+            <schedulesSection/>
           </div>
         </div>
       </div>
