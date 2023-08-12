@@ -69,13 +69,17 @@ export default {
     async mounted() {
         this.schedules = await getShowroomAdminData('schedules')
     },
-
+     
     computed: {
         filteredRecents() {
             const currentDate = new Date();
-            return this.schedules.filter(theater => new Date(theater.showDate) > currentDate);
+            return this.schedules.filter(theater => {
+                const theaterDate = new Date(theater.showDate);
+                return theaterDate > currentDate || theaterDate.toDateString() === currentDate.toDateString();
+            });
         },
     },
+
 
     methods: {
         redirectToSetlistInfo(setlistId) {
