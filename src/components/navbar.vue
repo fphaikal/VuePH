@@ -30,6 +30,9 @@ window.addEventListener("scroll", function() {
                         <a class="nav-link text-light" href="/theater-schedules">Theater Schedules</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-light" href="/recent-live">Recent Live</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-light" href="/">About</a>
                     </li>
                 </ul>

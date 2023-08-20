@@ -3,6 +3,7 @@ import MemberInfo from '../pages/MemberInfo.vue' //halaman informasi user
 import HomeView from '../pages/Home.vue'
 import SetlistInfo from '../pages/SetlistInfo.vue'
 import TheaterSchedules from '../pages/TheaterSchedules.vue'
+import RecentLiveView from '../pages/RecentLiveView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,7 +22,7 @@ const router = createRouter({
       component: () => import('../pages/AboutView.vue')
     },
     {
-      path: '/member/:roomId',
+      path: '/member/:memberName/:roomId',
       name: 'MemberInfo',
       component: MemberInfo,
     },
@@ -34,6 +35,11 @@ const router = createRouter({
       path: '/theater-schedules',
       name: 'schedules',
       component: TheaterSchedules,
+    },
+    {
+      path: '/recent-live',
+      name: 'recentLive',
+      component: RecentLiveView,
     },
   ]
 })

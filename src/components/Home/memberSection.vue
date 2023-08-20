@@ -15,7 +15,7 @@
     <div v-else>
         <div class="row g-2">
             <div v-for="user in allMembers" :key="user.id ?? user.room_id" class="col-md-4 col-sm-3 col-6 mt-1 mb-1"
-                @click="redirectToMemberInfo(user.id ?? user.room_id)">
+                @click="redirectToMemberInfo(user.url_key, user.id ?? user.room_id)">
                 <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
                     <img :src="user.image_url ?? user.image" class="card-img rounded-top-4"
                         :alt="user.name ?? user.main_name">
@@ -57,8 +57,8 @@ export default {
 
   methods: {
     // Fungsi untuk mengalihkan ke halaman informasi member
-    redirectToMemberInfo(roomId) {
-      this.$router.push({ path: `/member/${roomId}` });
+    redirectToMemberInfo(memberName ,roomId) {
+      this.$router.push({ path: `/member/${memberName}/${roomId}` });
     },
 
   },

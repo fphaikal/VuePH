@@ -32,18 +32,19 @@
 </template>
 
 <script>
-
+import { getRecentLive } from '../api';
 export default {
   data() {
     return {
       onlivesData: [],
       loading: true, // Mulai dengan menampilkan loading
+      recentLive: [],
     };
   },
   async mounted() {
     this.onlivesData = await this.getOnlivesData();
     this.loading = false;
-
+    this.recentLive = await getRecentLive("date", 1, "active", -1, 3);
   },
 
   methods: {
