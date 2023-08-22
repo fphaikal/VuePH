@@ -46,5 +46,17 @@ const getRecentLive = async (sort, page, filter, order, perpage) => {
     return null;
   }
 };
+
+const getRecentLiveDetail = async (endpoint) => {
+  try {
+    const response = await apiShowroomRecentLive.get(
+      `/api/showroom/${endpoint}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Gagal mengambil data dari API Showroom Recent Live:', error);
+    return null;
+  }
+};
 // Export semua fungsi yang diperlukan
-export { getShowroomData, getShowroomAdminData, getRecentLive};
+export { getShowroomData, getShowroomAdminData, getRecentLive, getRecentLiveDetail};

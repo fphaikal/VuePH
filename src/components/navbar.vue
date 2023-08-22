@@ -24,7 +24,7 @@ window.addEventListener("scroll", function() {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="">Home</a>
+                        <a class="nav-link text-light" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="/theater-schedules">Theater Schedules</a>
