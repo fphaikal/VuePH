@@ -82,6 +82,7 @@ export default {
     data() {
         return {
             recentLive: [],
+            getShortName: "",
         }
     },
     async mounted() {
@@ -90,7 +91,8 @@ export default {
     methods: {
         redirectToRecentLiveDetail(memberName, dataId) {
             this.$router.push({path: `/recent-live/${memberName}/${dataId}`})
-        }
+        },
+        
     }
 }
 </script>

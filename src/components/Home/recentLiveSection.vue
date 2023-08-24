@@ -13,8 +13,8 @@
                   <div class="card rounded-4" style="background-color: #1e2124;">
                     <img :src="recent.member.img" class="card-img rounded-top-4" :alt="recent.member.name">
                     <div class="card-body text-light">
-                      <h5 class="card-title">{{ recent.member.name }}</h5>
-                      <p class="card-text">Viewers: {{ recent.live_info.viewers }}</p>
+                      <h5 class="card-title">{{ getShortName(recent.member.url) }}</h5>
+                      <text class="card-text">Viewers: {{ recent.live_info.viewers }}</text>
                     </div>
                   </div>
               </div>
@@ -40,6 +40,12 @@ export default {
     },
     async mounted() {
         this.recentLive = await getRecentLive("date", 1, "active", -1, 4);
+
+    },
+    methods: {
+      getShortName(ShortName) {
+        return ShortName.replace("JKT48_", "")
+      },
     }
 }
 </script>

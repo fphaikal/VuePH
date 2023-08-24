@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@splidejs/splide": "^4.1.4",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
     "date-fns": "^2.30.0",

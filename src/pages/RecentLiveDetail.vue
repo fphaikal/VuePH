@@ -26,36 +26,52 @@ import formatTimeAgo from "../utils/formatTimeAgo"
               </div>
             </div>
             <hr>
-
-            <div class="row g-1">
+          
+            <div class="row g-1 p-1 mt-1">
               <div class="col-12 rounded-4" style="background-color: #282b30;">
-                <div class="row p-3 g-3">
-                  <div class="col-md-3 ">
-                    <div class="card text-light text-center rounded-4" style="background-color: #1e2124;">
+                <div class="row p-3 g-2">
+                  <div class="col-md-4 rounded-4">
+                    <div class="card text-bg-success text-center rounded-4 border-0">
+                      <div class="card-body">
+                        <text>Mulai</text>
+                        <h5>{{ formatLongDate(liveDetail.live_info.date.start) }}</h5>
+                      </div>
+                    </div>
+                  </div>                  
+                  <div class="col-md-4">
+                    <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
                         <text>Durasi</text>
                         <h5>{{ formatLiveDuration(liveDetail.live_info.duration) }}</h5>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3 ">
-                    <div class="card text-light text-center rounded-4" style="background-color: #1e2124;">
+                  <div class="col-md-4 ">
+                    <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
                         <text>Penonton</text>
                         <h5>{{ formatNumber(liveDetail.live_info.viewer) }}({{ formatNumber(liveDetail.live_info.active_viewer) }})</h5>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3 ">
-                    <div class="card text-light text-center rounded-4" style="background-color: #1e2124;">
+                  <div class="col-md-4 rounded-4">
+                    <div class="card text-bg-danger text-center rounded-4 border-0">
+                      <div class="card-body">
+                        <text>Selesai</text>
+                        <h5>{{ formatLongDate(liveDetail.live_info.date.end) }}</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 ">
+                    <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
                         <text>Komentar</text>
                         <h5>{{ formatNumber(liveDetail.live_info.comments.num) }} ({{ formatNumber(liveDetail.live_info.comments.users) }})</h5>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="card text-light text-center rounded-4" style="background-color: #1e2124;">
+                  <div class="col-md-4">
+                    <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
                         <text>Total Gift</text>
                         <h5>{{ formatNumber(liveDetail.total_point) }}</h5>
@@ -95,22 +111,53 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                 </div>
               </div>
             </div>
+            <div class="row g-2 mt-2">
+              <div class="col-12 p-3 rounded-4" style="background-color: #282b30;"> 
+                <h3>Fans Teratas</h3>
+                <div v-if="liveDetail">
+                  <div class="row mt-3">
+                    <div v-for="fan, index in liveDetail.fans" :key="fan.id" class="col-md-4 mb-3">   
+                      <div class="row">
+                        <div class="col-md-1 my-auto text-center">
+                          <h6>{{ index+1 }}</h6>
+                        </div>                 
+                        <div class="col-md-10">
+                          <h5 class="text-truncate">{{ fan.name }}</h5>
+                        </div>
+                      </div>              
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="col-3">            
+          <div class="col-3">
+            <div class="card rounded-4" style="background-color: #282b30;">
+              <div class="card-body">
+                <h4 class="card-title text-light">Screenshot</h4>
+                <div v-if="liveDetail && liveDetail.live_info.screenshot.list">
+                  <div v-for="ssId in liveDetail.live_info.screenshot.list" :key="ssId">
+                    <img :src="getImageUrl(ssId)" class="img-fluid mt-1 rounded-3" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>            
           </div>
         </div>
         <div class="text-light">
-        </div>
-        <div class="row">
-
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<style>
+
+</style>
+
 <script>
+
 import { getRecentLiveDetail } from "../components/api";
 
 export default {
@@ -122,8 +169,9 @@ export default {
   async mounted() {
     try {
       const getDataId = this.$route.params.dataId;
-
       this.liveDetail = await getRecentLiveDetail(`recent/${getDataId}`);
+
+
     } catch (error) {
       console.log(error);
     }
@@ -138,7 +186,12 @@ export default {
       } else {
         return 'Unknown';
       }
-    }
-  }
+    },
+    
+    getImageUrl(screenshotId) {
+      const { folder, format } = this.liveDetail.live_info.screenshot;
+      return `https://res.cloudinary.com/haymzm4wp/image/upload/${folder}/${screenshotId}.${format}`;
+    },
+  },
 };
 </script>
