@@ -10,7 +10,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
     <div class="container">
       <div v-if="liveDetail">
         <div class="row mt-4 mb-4 text-light">
-          <div class="col-9">
+          <div class="col-md-9 col-12">
 
             <div class="row">
               <div class="col-2 my-auto">
@@ -27,18 +27,29 @@ import formatTimeAgo from "../utils/formatTimeAgo"
             </div>
             <hr>
           
-            <div class="row g-1 p-1 mt-1">
+            <div class="row g-2">
+              <div class="col-md-6 col-6">
+                <div class="card text-bg-success text-center rounded-4 border-0 ">
+                  <div class="card-body">
+                    <text>Mulai</text>
+                    <h5>{{ formatLongDate(liveDetail.live_info.date.start) }}</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-6">
+                <div class="card text-bg-danger text-center rounded-4 border-0">
+                  <div class="card-body">
+                    <text>Selesai</text>
+                    <h5>{{ formatLongDate(liveDetail.live_info.date.end) }}</h5>
+                  </div>
+                </div> 
+              </div>
+            </div>
+            <div class="row g-1 mt-1">
+             
               <div class="col-12 rounded-4" style="background-color: #282b30;">
-                <div class="row p-3 g-2">
-                  <div class="col-md-4 rounded-4">
-                    <div class="card text-bg-success text-center rounded-4 border-0">
-                      <div class="card-body">
-                        <text>Mulai</text>
-                        <h5>{{ formatLongDate(liveDetail.live_info.date.start) }}</h5>
-                      </div>
-                    </div>
-                  </div>                  
-                  <div class="col-md-4">
+                <div class="row p-3 g-2">           
+                  <div class="col-md-6 col-6">
                     <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
                         <text>Durasi</text>
@@ -46,7 +57,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4 ">
+                  <div class="col-md-6 col-6">
                     <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
                         <text>Penonton</text>
@@ -54,15 +65,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4 rounded-4">
-                    <div class="card text-bg-danger text-center rounded-4 border-0">
-                      <div class="card-body">
-                        <text>Selesai</text>
-                        <h5>{{ formatLongDate(liveDetail.live_info.date.end) }}</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4 ">
+                  <div class="col-md-6 col-6">
                     <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
                         <text>Komentar</text>
@@ -70,7 +73,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-6 col-6">
                     <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
                         <text>Total Gift</text>
@@ -100,7 +103,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" fill="currentColor" class="bi bi-people-fill my-auto me-1 ms-1" viewBox="0 0 16 16">
                                   <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
                                 </svg>
-                                <a>{{ data.user_count }}</a>
+                                <small>{{ data.user_count }}</small>
                               </span>
                             </a>
                           </div>
@@ -115,14 +118,18 @@ import formatTimeAgo from "../utils/formatTimeAgo"
               <div class="col-12 p-3 rounded-4" style="background-color: #282b30;"> 
                 <h3>Fans Teratas</h3>
                 <div v-if="liveDetail">
-                  <div class="row mt-3">
-                    <div v-for="fan, index in liveDetail.fans" :key="fan.id" class="col-md-4 mb-3">   
-                      <div class="row">
-                        <div class="col-md-1 my-auto text-center">
-                          <h6>{{ index+1 }}</h6>
-                        </div>                 
-                        <div class="col-md-10">
-                          <h5 class="text-truncate">{{ fan.name }}</h5>
+                  <div class="row mt-4">
+                    <div v-for="fan, index in liveDetail.fans.slice(0, smScreen?5 : 12)" :key="fan.id" class="col-md-4 mb-3">   
+                      <div class="row g-2">
+                        <div class="col-md-1 col-1 my-auto text-center">
+                          <small>{{ index+1 }}</small>
+                        </div>             
+                        <div class="col-md-3 col-2 my-auto mx-auto text-center">
+                          <img :src="'https://static.showroom-live.com/image/avatar/'+fan.avatar_id + '.png'" class="img-fluid" width="100" alt="">
+                        </div>    
+                        <div class="col-md-7 col-7 my-auto">
+                          <h6 class="text-truncate mb-0">{{ fan.name }}</h6>
+                          <small>Score: {{ formatNumber(fan.fans_point) }}</small>
                         </div>
                       </div>              
                     </div>
@@ -130,9 +137,32 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                 </div>
               </div>
             </div>
+            <div class="row mt-2 d-md-none">
+              <div class="col-md-12">
+                <div id="carouselExample" class="carousel slide">
+                  <div class="carousel-inner">
+                    <div v-for="ssId, index in liveDetail.live_info.screenshot.list" :key="ssId">
+                      <div :class="['carousel-item', index === 0 ? 'active' : '']">
+                        <div class="ratio ratio-16x9" style="position: relative;">
+                          <img :src="getImageUrl(ssId)" class="mt-1 img-fluid rounded-3" style="object-fit: cover; position: absolute; width: 100%; height: 100%; top: 0; left: 0;" alt="">
+                        </div>
+                      </div>
+                    </div>                    
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="col-3">
+          <div class="col-md-3 d-none d-md-block">
             <div class="card rounded-4" style="background-color: #282b30;">
               <div class="card-body">
                 <h4 class="card-title text-light">Screenshot</h4>
@@ -163,6 +193,7 @@ import { getRecentLiveDetail } from "../components/api";
 export default {
   data() {
     return {
+      smScreen: false,
       liveDetail: null,
     };
   },
@@ -175,6 +206,16 @@ export default {
     } catch (error) {
       console.log(error);
     }
+  },
+  created() {
+    // Saat komponen di-load, cek ukuran layar dan atur smScreen
+    this.updateScreenSize();
+    // Tambahkan event listener untuk memperbarui smScreen saat ukuran layar berubah
+    window.addEventListener('resize', this.updateScreenSize);
+  },
+  beforeDestroy() {
+    // Hapus event listener saat komponen dihancurkan
+    window.removeEventListener('resize', this.updateScreenSize);
   },
   methods: {
     getGeneration(generation) {
@@ -192,6 +233,10 @@ export default {
       const { folder, format } = this.liveDetail.live_info.screenshot;
       return `https://res.cloudinary.com/haymzm4wp/image/upload/${folder}/${screenshotId}.${format}`;
     },
+    updateScreenSize() {
+      // Periksa ukuran layar dan atur smScreen berdasarkan kondisi
+      this.smScreen = window.innerWidth < 768; // Angka 768 mewakili lebar md (medium)
+    }
   },
 };
 </script>
