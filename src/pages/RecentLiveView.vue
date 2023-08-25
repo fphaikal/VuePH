@@ -14,7 +14,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
             </div>
             <div v-if="recentLive">
                 <div class="row g-2">
-                    <div v-for="data in recentLive.recents" :key="data.data_id" class="col-4 mb-2">
+                    <div v-for="data in recentLive.recents" :key="data.data_id" class="col-md-4 col-6 mb-2">
                         <div class="card text-light rounded-4 border-0" style="background-color: #282b30;">
                             <img :src="data.member.img" alt="" class="card-img rounded-top-4">
                             <div class="card-body">
