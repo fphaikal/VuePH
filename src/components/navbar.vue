@@ -41,7 +41,7 @@ window.addEventListener("scroll", function() {
     </nav>
 </template>
 
-<style scoped>
+<style>
     .navbar {
       transition: backdrop-filter 0.3s, box-shadow 0.3s, opacity 0.3s;
       backdrop-filter: blur(0);

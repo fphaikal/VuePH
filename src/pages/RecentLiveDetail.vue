@@ -45,8 +45,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                 </div> 
               </div>
             </div>
-            <div class="row g-1 mt-1">
-             
+            <div class="row g-1 mt-1">             
               <div class="col-12 rounded-4" style="background-color: #282b30;">
                 <div class="row p-3 g-2">           
                   <div class="col-md-6 col-6">
@@ -84,6 +83,29 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                 </div>
               </div>
             </div>
+            <div class="row g-2 mt-1">
+              <div class="col-12 p-3 rounded-4" style="background-color: #282b30;"> 
+                <h3>Fans Teratas</h3>
+                <div v-if="liveDetail">
+                  <div class="row mt-4">
+                    <div v-for="fan, index in liveDetail.fans.slice(0, smScreen?5 : 12)" :key="fan.id" class="col-md-4 mb-3">   
+                      <div class="row g-2">
+                        <div class="col-md-1 col-1 my-auto text-center">
+                          <small>{{ index+1 }}</small>
+                        </div>             
+                        <div class="col-md-3 col-2 my-auto mx-auto text-center">
+                          <img :src="'https://static.showroom-live.com/image/avatar/'+fan.avatar_id + '.png'" class="img-fluid" width="100" alt="">
+                        </div>    
+                        <div class="col-md-7 col-7 my-auto">
+                          <h6 class="text-truncate mb-0">{{ fan.name }}</h6>
+                          <small>Score: {{ formatNumber(fan.fans_point) }}</small>
+                        </div>
+                      </div>              
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="row g-1 mt-2">
               <div class="col-12 rounded-4" style="background-color: #282b30">
                 <div class="row p-3">
@@ -114,29 +136,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                 </div>
               </div>
             </div>
-            <div class="row g-2 mt-2">
-              <div class="col-12 p-3 rounded-4" style="background-color: #282b30;"> 
-                <h3>Fans Teratas</h3>
-                <div v-if="liveDetail">
-                  <div class="row mt-4">
-                    <div v-for="fan, index in liveDetail.fans.slice(0, smScreen?5 : 12)" :key="fan.id" class="col-md-4 mb-3">   
-                      <div class="row g-2">
-                        <div class="col-md-1 col-1 my-auto text-center">
-                          <small>{{ index+1 }}</small>
-                        </div>             
-                        <div class="col-md-3 col-2 my-auto mx-auto text-center">
-                          <img :src="'https://static.showroom-live.com/image/avatar/'+fan.avatar_id + '.png'" class="img-fluid" width="100" alt="">
-                        </div>    
-                        <div class="col-md-7 col-7 my-auto">
-                          <h6 class="text-truncate mb-0">{{ fan.name }}</h6>
-                          <small>Score: {{ formatNumber(fan.fans_point) }}</small>
-                        </div>
-                      </div>              
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <div class="row mt-2 d-md-none">
               <div class="col-md-12">
                 <div id="carouselExample" class="carousel slide">

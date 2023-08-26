@@ -38,8 +38,8 @@
               <p class="my-auto text-center">Loading...</p>
             </div>
 
-            <hr>
-            <div v-if="onlivesData.length > 0">
+            <hr class="d-none d-sm-block">
+            <div v-if="onlivesData.length > 0" class="d-none d-sm-block">
               <div class="card rounded-4" style="background-color: #282b30;">
                 <div class="card-body">
                   <h5 class="text-light mb-3">Room Online</h5>
@@ -57,7 +57,7 @@
                 </div>
               </div>
             </div>
-            <div v-else>
+            <div v-else class="d-none d-sm-block">
               <div class="card rounded-4" style="background-color: #282b30;">
                 <div class="card-body text-light">
                   <p class="text-center my-auto">No onlives available</p>
@@ -66,17 +66,39 @@
             </div>
           </div>
           <div class="col-md-8">
-            <div v-if="memberInfo">
+            <div v-if="memberInfo || memberInfoDetail">
               <div class="row g-2">
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-3 col-6">
                   <div class="card rounded-4 shadow" style="background-color: #282b30;">
                     <div class="card-body text-light">Tanggal Lahir: <br> <b>{{ displayBirthday(memberInfo.description)
                     }}</b></div>
                   </div>
                 </div>
-                <div class="col-md-4 col-sm-6 ">
+                <div class="col-md-3 col-6 ">
                   <div class="card rounded-4 shadow" style="background-color: #282b30;">
                     <div class="card-body text-light">Zodiac Signs: <br><b>{{ zodiac }}</b></div>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6 ">
+                  <div class="card rounded-4 shadow" style="background-color: #282b30;">
+                    <div class="card-body text-light">Tinggi Badan: <br><b>{{ memberInfoDetail.height }}</b></div>
+                  </div>
+                </div>
+                <div class="col-md-3 col-6 ">
+                  <div class="card rounded-4 shadow" style="background-color: #282b30;">
+                    <div class="card-body text-light">Golongan Darah: <br><b>{{ memberInfoDetail.bloodType }}</b></div>
+                  </div>
+                </div>
+              </div>
+              <div v-if="memberInfoDetail">
+                <div class="row mt-2">
+                  <div class="col-md-12">
+                    <div class="card rounded-4 shadow" style="background-color: #282b30;">
+                      <div class="card-body text-light">
+                        <h5 class="mb-0">Jikoshoukai</h5>
+                        <h6 class="mt-3">{{ memberInfoDetail.jikosokai }}</h6>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -106,6 +128,11 @@
             </div>
           </div>
         </div>
+        <div class="row g-3">
+          <div class="col-md-4">
+            
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -126,7 +153,7 @@
 }
 </style>
 <script>
-import { getShowroomData } from '../components/api';
+import { getShowroomData, getShowroomDataDetail } from '../components/api';
 
 export default {
   data() {
@@ -135,7 +162,7 @@ export default {
       birthday: null,
       zodiac: '',
       onlivesData: [],
-
+      memberInfoDetail: null,
     };
   },
   async mounted() {
@@ -143,10 +170,13 @@ export default {
 
     try {
       const roomId = this.$route.params.roomId;
+      const memberName = this.$route.params.memberName;
       // Ambil data member berdasarkan roomId
       this.memberInfo = await getShowroomData(
         `rooms/profile/${roomId}/SQghJNnUPttxNbRudspw5Oo9Cnf_X16jFXvKjRkl_QrQzgzQcHvr0jlLoI7JL02z`
       );
+
+      this.memberInfoDetail = await getShowroomDataDetail(`profile?room_url_key=${memberName}&id=${roomId}`)
 
       this.onlivesData = await this.getOnlivesData();
       this.zodiac = this.getZodiacFromDescription(this.memberInfo.description);
@@ -187,7 +217,7 @@ export default {
     },
     formatDescription(description) {
       // Mengganti karakter baris baru (\n) dengan tag HTML <br>
-      const unwantedKeys = ['Birthday', 'Zodiac'];
+      const unwantedKeys = ['Birthday', 'Zodiac', 'Blood type', 'Twitter', 'Instagram'];
       const lines = description.split('\n');
       const filteredLines = lines.filter(line => !unwantedKeys.some(key => line.includes(key)));
       const sanitizedLines = filteredLines.map(line => line.replace(/"/g, '')); // Menghapus tanda petik
