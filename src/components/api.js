@@ -16,6 +16,21 @@ const getShowroomData = async (endpoint) => {
   }
 };
 
+const apiShowroomDetail = axios.create({
+  baseURL: 'https://dc.crstlnz.site',
+});
+
+// Function untuk mengambil data dari API Showroom
+const getShowroomDataDetail = async (endpoint) => {
+  try {
+    const response = await apiShowroomDetail.get(`/api/showroom/${endpoint}`);
+    return response.data;
+  } catch (error) {
+    console.error('Gagal mengambil data dari API Showroom:', error);
+    return null;
+  }
+};
+
 // Function untuk mengambil data dari API Showroom Admin
 const apiShowroomAdmin = axios.create({
   baseURL: 'https://showroom-admin.ikhbaldwiyan.repl.co/',
@@ -34,6 +49,19 @@ const getShowroomAdminData = async (endpoint) => {
 const apiShowroomRecentLive = axios.create({
   baseURL: 'https://dc.crstlnz.site',
 });
+
+
+const getBirthday = async (endpoint) => {
+  try {
+    const response = await apiShowroomRecentLive.get(
+      `/api/member/birthday?group=${endpoint}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Gagal mengambil data dari API Showroom Birthday:', error);
+    return null;
+  }
+};
 
 const getRecentLive = async (sort, page, filter, order, perpage) => {
   try {
@@ -59,4 +87,10 @@ const getRecentLiveDetail = async (endpoint) => {
   }
 };
 // Export semua fungsi yang diperlukan
-export { getShowroomData, getShowroomAdminData, getRecentLive, getRecentLiveDetail};
+export { 
+  getShowroomData, 
+  getShowroomDataDetail, 
+  getShowroomAdminData,
+  getBirthday, 
+  getRecentLive, 
+  getRecentLiveDetail};
