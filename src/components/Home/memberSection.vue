@@ -20,7 +20,7 @@
                     <img :src="user.image_url ?? user.image" class="card-img rounded-top-4"
                         :alt="user.name ?? user.main_name">
                     <div class="card-body">
-                        <p class="card-title"><b>{{ user.name ?? user.main_name }}</b></p>
+                        <h6 class="card-title mb-0"><b>{{ getName(user.name ?? user.main_name) }}</b></h6>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,9 @@ export default {
     redirectToMemberInfo(memberName ,roomId) {
       this.$router.push({ path: `/member/${memberName}/${roomId}` });
     },
-
+    getName(ShortName) {
+        return ShortName.replace("（JKT48）", "")
+      },
   },
 };
 </script>

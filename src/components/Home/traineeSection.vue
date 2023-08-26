@@ -11,7 +11,7 @@
                 <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
                     <img :src="trainee.image" class="card-img rounded-top-4" alt="" srcset="">
                     <div class="card-body">
-                        <p class="card-title"><b>{{ trainee.main_name }}</b></p>
+                        <h6 class="card-title mb-0"><b>{{ getName(trainee.main_name) }}</b></h6>
                     </div>
                 </div>
             </div>
@@ -40,6 +40,9 @@ export default {
         redirectToMemberInfo(memberName, roomId) {
             this.$router.push({ path: `/member/${memberName}/${roomId}` });
         },
+        getName(ShortName) {
+        return ShortName.replace("（JKT48）", "")
+      },
     },
 };
 </script>
