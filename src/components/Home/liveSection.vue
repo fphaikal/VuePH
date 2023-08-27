@@ -9,12 +9,12 @@
         <div class="row">
           <div v-if="onlivesData.length > 0">
             <div class="row g-2">
-              <div v-for="live in onlivesData" :key="live.room_id" class="col-md-4">
+              <div v-for="live in onlivesData" :key="live.room_id" class="col-md-4 col-6">
                 <a :href="'https://www.showroom-live.com/r/' + live.room_url_key" target="_blank">
                   <div class="card rounded-4" style="background-color: #1e2124;">
                     <img :src="live.image" class="card-img rounded-top-4" :alt="live.main_name">
                     <div class="card-body text-light">
-                      <h5 class="card-title">{{ live.main_name }}</h5>
+                      <h5 class="card-title">{{ getName(live.main_name) }}</h5>
                       <p class="card-text">Viewers: {{ live.view_num }}</p>
                     </div>
                   </div>
@@ -62,6 +62,10 @@ export default {
         console.error(error);
         return [];
       }
+    },
+
+    getName(ShortName) {
+      return ShortName.replace("（JKT48）", "")
     },
 
 
