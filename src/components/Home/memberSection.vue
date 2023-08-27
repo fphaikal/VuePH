@@ -2,11 +2,6 @@
     <div class="col-md-7 my-auto">
         <h3>Room Member</h3>
     </div>
-    <div class="col-md-5 my-auto d-flex justify-content-end">
-        <button class="btn btn-success me-1 btn-sm rounded-pill" @click="showAllMembers">All Members</button>
-        <button class="btn btn-danger me-1 btn-sm rounded-pill" @click="showMembers">Members</button>
-        <button class="btn btn-warning btn-sm rounded-pill" @click="showAcademy">Trainee</button>
-    </div>
 
     <hr>
     <div v-if="loading">
@@ -14,7 +9,7 @@
     </div>
     <div v-else>
         <div class="row g-2">
-            <div v-for="user in allMembers" :key="user.id ?? user.room_id" class="col-md-4 col-sm-3 col-6 mt-1 mb-1"
+            <div v-for="user in allMembers" :key="user.id ?? user.room_id" class="col-md-3 col-sm-3 col-6 mt-1 mb-1"
                 @click="redirectToMemberInfo(user.url_key, user.id ?? user.room_id)">
                 <div class="card text-light shadow rounded-4" style="background-color: #282b30;">
                     <img :src="user.image_url ?? user.image" class="card-img rounded-top-4"
