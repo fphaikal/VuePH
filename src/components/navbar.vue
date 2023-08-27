@@ -6,17 +6,18 @@ defineProps({
     }
 })
 
-
 window.addEventListener("scroll", function() {
     var navbar = document.querySelector(".navbar");
     navbar.classList.toggle("blur", window.scrollY > 0);
   });
+
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand fs-4 text-light" href="/"><b>{{msg}}</b><small style="font-size: 50%; color: #585858;">@fphaikal</small></a>
+            <RouterLink class="navbar-brand fs-4 text-light" to="/"><b>{{msg}}</b><small style="font-size: 50%; color: #585858;">@fphaikal</small></RouterLink>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon text-light"></span>
@@ -24,16 +25,16 @@ window.addEventListener("scroll", function() {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="/">Home</a>
+                        <RouterLink class="nav-link text-light" aria-current="page" to="/">Home</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="/theater-schedules">Theater Schedules</a>
+                        <RouterLink class="nav-link text-light" to="/theater-schedules">Theater Schedules</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="/recent-live">Recent Live</a>
+                        <RouterLink class="nav-link text-light" to="/recent-live">Recent Live</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="/">About</a>
+                        <RouterLink class="nav-link text-light" to="/">About</RouterLink>
                     </li>
                 </ul>
             </div>
@@ -41,13 +42,12 @@ window.addEventListener("scroll", function() {
     </nav>
 </template>
 
-<style>
+<style scoped>
     .navbar {
       transition: backdrop-filter 0.3s, box-shadow 0.3s, opacity 0.3s;
       backdrop-filter: blur(0);
       background-color: rgba(30, 33, 36, 1);
       box-shadow: none;
-      height: 70px;
       position: sticky; /* Menjadikan navbar tetap berada di atas saat di-scroll */
 
     }
