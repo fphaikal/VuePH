@@ -16,6 +16,21 @@ const getShowroomData = async (endpoint) => {
   }
 };
 
+const apiShowroomAdmin = axios.create({
+  baseURL: 'https://showroom-admin.ikhbaldwiyan.repl.co/',
+});
+
+const getShowroomAdminData = async (endpoint) => {
+  try {
+    const response = await apiShowroomAdmin.get(endpoint);
+    return response.data;
+  } catch (error) {
+    console.error('Gagal mengambil data dari API Showroom Admin:', error);
+    return null;
+  }
+};
+
+// API from @crstlnz
 const apiShowroomDetail = axios.create({
   baseURL: 'https://dc.crstlnz.site',
 });
@@ -31,29 +46,10 @@ const getShowroomDataDetail = async (endpoint) => {
   }
 };
 
-// Function untuk mengambil data dari API Showroom Admin
-const apiShowroomAdmin = axios.create({
-  baseURL: 'https://showroom-admin.ikhbaldwiyan.repl.co/',
-});
-
-const getShowroomAdminData = async (endpoint) => {
-  try {
-    const response = await apiShowroomAdmin.get(endpoint);
-    return response.data;
-  } catch (error) {
-    console.error('Gagal mengambil data dari API Showroom Admin:', error);
-    return null;
-  }
-};
-
-const apiShowroomRecentLive = axios.create({
-  baseURL: 'https://dc.crstlnz.site',
-});
-
 
 const getBirthday = async (endpoint) => {
   try {
-    const response = await apiShowroomRecentLive.get(
+    const response = await apiShowroomDetail.get(
       `/api/member/birthday?group=${endpoint}`
     );
     return response.data;
@@ -65,7 +61,7 @@ const getBirthday = async (endpoint) => {
 
 const getRecentLive = async (sort, page, filter, order, perpage) => {
   try {
-    const response = await apiShowroomRecentLive.get(
+    const response = await apiShowroomDetail.get(
       `/api/showroom/recent?sort=${sort}&page=${page}&filter=${filter}&order=${order}&perpage=${perpage}`
     );
     return response.data;
