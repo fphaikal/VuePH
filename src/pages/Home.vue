@@ -5,6 +5,7 @@ import memberSection from '../components/Home/memberSection.vue';
 import traineeSection from '../components/Home/traineeSection.vue';
 import banner from '../components/Home/banner.vue'
 import recentLiveSection from '../components/Home/recentLiveSection.vue';
+import birthdaySection from '../components/Home/birthdaySection.vue';
 </script>
 
 <template>
@@ -23,6 +24,9 @@ import recentLiveSection from '../components/Home/recentLiveSection.vue';
 
             <div class="row mt-4">
               <liveSection/>
+            </div>
+            <div class="row mt-4">
+              <birthdaySection/>
             </div>
             <div class="row mt-4">
               <recentLiveSection/>
