@@ -1,9 +1,18 @@
 <script setup>
 import formatTimeAgo from '../../utils/formatTimeAgo';
+import { RouterLink } from 'vue-router';
 </script>
 
 <template> 
-<h3>Recent Live</h3>
+<div class="col-6 my-auto">
+  <h3>Recent Live</h3>
+</div>
+<div class="col-6 my-auto d-flex justify-content-end">
+  <RouterLink to="/recent-live">
+    <h6 class="text-light">Selengkapnya</h6>
+  </RouterLink>
+</div>
+
   <div class="col-md-12 mt-2">
     <div class="container rounded-4 p-3" style="background-color: #282b30;">
       <div v-if="loading">
@@ -32,13 +41,15 @@ import formatTimeAgo from '../../utils/formatTimeAgo';
             </div>
           </div>
           <div v-else>
-            <p class="text-center my-auto">Tidak Ada Member yang LIVE.</p>
+            <p class="text-center my-auto">Tidak Ada Member yang Terakhir LIVE.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+
 
 <script>
 import { getRecentLive } from '../api';
