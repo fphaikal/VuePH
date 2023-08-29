@@ -2,17 +2,20 @@
   <main>
     <div class="full-height-section text-light" style="background-color: #1e2124;">
       <div class="container">
-        <div v-if="memberInfo">
+        <div v-if="memberInfo || memberInfoDetail">
           <div class="row mt-3 ">
             <div class="col-md-1 text-center my-auto">
               <img :src="memberInfo.image_square" class="img-fluid rounded-circle mobile-image" alt="">
             </div>
-            <div class="col-md-9 my-auto mobile-text-center">
+            <div class="col-md-8 my-auto d-flex justify-content-center justify-content-md-start">
               <h2><b>{{ memberInfo.main_name }}</b></h2>
             </div>
-            <div class="col-md-2 my-auto text-center">
-              <a :href="'https://www.showroom-live.com/room/profile?room_id=' + memberInfo.room_id" target="_blank"
-                class="btn btn-sm btn-light rounded-pill ">Go To SHOWROOM</a>
+            <div class="col-md-3 my-auto d-flex justify-content-center justify-content-md-end">
+              <Generation class=" p-2 rounded-pill text-bg-success">
+                <small class="mb-0 m-3 ">
+                  Generasi {{ getGeneration(memberInfoDetail.generation) }}
+                </small>
+              </Generation>
             </div>
           </div>
         </div>
@@ -102,12 +105,21 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt-2">
+              <div class="row mt-2 mb-2">
                 <div class="col-md-12">
                   <div class="card rounded-4 shadow" style="background-color: #282b30;">
                     <div class="card-body text-light">
                       <h5>Deskripsi</h5>
                       <p class="mt-3" v-html="formatDescription(memberInfo.description)"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div v-if="memberInfoDetail">
+                <div class="row g-2">
+                  <div v-for="socmed in memberInfoDetail.socials" class="col-md-3 col-6">
+                    <div class="d-grid">                      
+                      <a class="btn btn-light rounded-4" :href="socmed.url">{{ socmed.title }}</a>
                     </div>
                   </div>
                 </div>
@@ -127,12 +139,7 @@
               <p class="my-auto text-center">Loading...</p>
             </div>
           </div>
-        </div>
-        <div class="row g-3">
-          <div class="col-md-4">
-            
-          </div>
-        </div>
+        </div>        
       </div>
     </div>
   </main>
@@ -190,6 +197,16 @@ export default {
     }
   },
   methods: {
+    getGeneration(generation) {
+      // Mencari angka dalam string "generation"
+      const number = generation.match(/\d+/);
+
+      if (number) {
+        return number[0];
+      } else {
+        return 'Unknown';
+      }
+    },
     async getOnlivesData() {
       try {
         const response = await fetch('https://jkt48-showroom-api.vercel.app/api/rooms/onlives');
@@ -250,6 +267,7 @@ export default {
         return [];
       }
     },
+    
   },
 };
 </script>

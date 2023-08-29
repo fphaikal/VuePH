@@ -34,7 +34,7 @@ import { RouterLink } from 'vue-router';
                         <RouterLink class="nav-link text-light" to="/recent-live">Recent Live</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <RouterLink class="nav-link text-light" to="/">About</RouterLink>
+                        <RouterLink class="nav-link text-light" to="/about">About</RouterLink>
                     </li>
                 </ul>
             </div>

@@ -13,14 +13,14 @@ import formatTimeAgo from "../utils/formatTimeAgo"
           <div class="col-md-9 col-12">
 
             <div class="row">
-              <div class="col-2 my-auto">
+              <div class="col-md-2 col-3 my-auto">
                 <div class="ratio ratio-1x1" style="position: relative;">
                   <img :src="liveDetail.room_info.img_alt" class="card-img-top rounded-circle my-auto" 
                         style="object-fit: cover; position: absolute; width: 100%; height: 100%; top: 0; left: 0;"
                         alt="...">
                 </div>
               </div>
-              <div class="col-10 my-auto">
+              <div class="col-md-10 col-9 my-auto">
                 <h2>{{ liveDetail.room_info.name }}</h2>
                 <Generation class="badge rounded-pill text-bg-success">Generasi {{ getGeneration(liveDetail.room_info.generation) }}</Generation>
               </div>

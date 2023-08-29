@@ -5,6 +5,7 @@ import SetlistInfo from '../pages/SetlistInfo.vue'
 import TheaterSchedules from '../pages/TheaterSchedules.vue'
 import RecentLiveView from '../pages/RecentLiveView.vue'
 import RecentLiveDetail from '../pages/RecentLiveDetail.vue'
+import AboutView from '../pages/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,8 +17,8 @@ const router = createRouter({
     },
     {
       path: '/about',
-      name: 'about',
-      component: () => import('../pages/AboutView.vue')
+      name: 'about', 
+      component: AboutView,     
     },
     {
       path: '/member/:memberName/:roomId',

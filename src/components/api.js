@@ -73,7 +73,7 @@ const getRecentLive = async (sort, page, filter, order, perpage) => {
 
 const getRecentLiveDetail = async (endpoint) => {
   try {
-    const response = await apiShowroomRecentLive.get(
+    const response = await apiShowroomDetail.get(
       `/api/showroom/${endpoint}`
     );
     return response.data;
