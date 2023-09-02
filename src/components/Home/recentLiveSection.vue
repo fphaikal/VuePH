@@ -1,6 +1,5 @@
 <script setup>
 import formatTimeAgo from '../../utils/formatTimeAgo';
-import { RouterLink } from 'vue-router';
 </script>
 
 <template> 
@@ -23,6 +22,7 @@ import { RouterLink } from 'vue-router';
           <div v-if="recentLive">
             <div class="row g-2">
               <div v-for="recent in recentLive.recents" :key="recent._id" class="col-md-3 col-6">
+                <RouterLink :to="'/recent-live/' + recent.member.url + '/' + recent.data_id">
                   <div class="card rounded-4" style="background-color: #1e2124;">
                     <img :src="recent.member.img" class="card-img rounded-top-4" :alt="recent.member.name">
                     <div class="card-body text-light">
@@ -37,6 +37,7 @@ import { RouterLink } from 'vue-router';
                       </div>
                     </div>
                   </div>
+                </RouterLink>
               </div>
             </div>
           </div>

@@ -145,9 +145,9 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                                             d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
                                     </svg>
                                     <h6 class="my-auto ms-2">{{ formatTimeAgo(data.live_info.date.end) }}</h6>
-                                    <div @click="redirectToRecentLiveDetail(data.member.url, data.data_id)" class="ms-auto">
+                                    <RouterLink :to="'recent-live/' + data.member.url + '/' + data.data_id"  class="ms-auto">
                                         <h6 class="my-auto">Detail ></h6>
-                                    </div>
+                                    </RouterLink>
                                 </div>
                             </div>
                         </div>
