@@ -20,15 +20,14 @@
                         <div class="col-md-8">
                             <div class="ratio ratio-16x9 d-none d-md-block shadow" style="position: relative">
                                 <img :src="setlistInfo.setlist.image" class="card-img-top rounded-4" style="
-                    object-fit: cover;
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    top: 0;
-                    left: 0;
-                  " alt="..." />
+                                        object-fit: cover;
+                                        position: absolute;
+                                        width: 100%;
+                                        height: 100%;
+                                        top: 0;
+                                        left: 0;"/>
                             </div>
-                            <div class="row mt-4">
+                            <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -66,7 +65,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row g-2 mt-1 mb-3">
+                                    <div class="row g-2 mt-1">
                                         <div class="col-md-6">
                                             <a :href="setlistInfo.ticketShowroom" class="card rounded-4 bg-success shadow">
                                                 <div class="card-body text-light d-flex">
@@ -82,6 +81,24 @@
                                                     <p class="my-auto mx-auto">Buy Ticket Theater</p>
                                                 </div>
                                             </a>
+                                        </div>
+                                    </div>
+                                    <div class="card mt-3 mb-3 rounded-4" style="background-color: #282b30;">
+                                        <div class="card-body text-light">
+                                            <h3 class="card-title mb-4">Setlist</h3>
+                                            <div class="overflow-y-scroll overflow-x-hidden" style="max-height: 300px; ">
+                                                <div v-for="setlist, index in setlistInfo.setlist.songs">
+                                                    <div class="row g-2">
+                                                        <div class="col-1 col-md-1 my-auto text-center">
+                                                            <small>{{ index+1 }}</small>
+                                                        </div>   
+                                                        <div class="col-8 col-md-8 my-auto">
+                                                            <h5 class="mb-0">{{ setlist.translatedTitle ?? setlist.title }}</h5>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

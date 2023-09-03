@@ -3,6 +3,7 @@ import formatLongDate from "../utils/formatLongDate"
 import formatLiveDuration from "../utils/formatLiveDuration"
 import formatNumber from "../utils/formatNumber"
 import formatTimeAgo from "../utils/formatTimeAgo"
+import { RouterLink } from "vue-router"
 </script>
 <template>
     <div class="full-height-section text-light" style="background-color: #1e2124;">
