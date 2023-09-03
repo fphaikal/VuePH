@@ -6,6 +6,7 @@ import TheaterSchedules from '../pages/TheaterSchedules.vue'
 import RecentLiveView from '../pages/RecentLiveView.vue'
 import RecentLiveDetail from '../pages/RecentLiveDetail.vue'
 import AboutView from '../pages/AboutView.vue'
+import LiveWatch from '../pages/LiveWatchView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +46,11 @@ const router = createRouter({
       name: 'RecentLiveDetail',
       component: RecentLiveDetail,
     },
+    {
+      path: '/watch/:room_url_key/:roomId',
+      name: 'LiveWatch',
+      component: LiveWatch
+    }
   ]
 })
 

@@ -10,7 +10,7 @@
           <div v-if="onlivesData.length > 0">
             <div class="row g-2">
               <div v-for="live in onlivesData" :key="live.room_id" class="col-md-4 col-6">
-                <a :href="'https://www.showroom-live.com/r/' + live.room_url_key" target="_blank">
+                <RouterLink :to="'/watch/' + live.room_url_key + '/' + live.room_id">
                   <div class="card rounded-4" style="background-color: #1e2124;">
                     <img :src="live.image" class="card-img rounded-top-4" :alt="live.main_name">
                     <div class="card-body text-light">
@@ -18,7 +18,7 @@
                       <p class="card-text">Viewers: {{ live.view_num }}</p>
                     </div>
                   </div>
-                </a>
+                </RouterLink>
               </div>
             </div>
           </div>
@@ -32,19 +32,16 @@
 </template>
 
 <script>
-import { getRecentLive } from '../api';
 export default {
   data() {
     return {
       onlivesData: [],
       loading: true, // Mulai dengan menampilkan loading
-      recentLive: [],
     };
   },
   async mounted() {
     this.onlivesData = await this.getOnlivesData();
     this.loading = false;
-    this.recentLive = await getRecentLive("date", 1, "active", -1, 3);
   },
 
   methods: {

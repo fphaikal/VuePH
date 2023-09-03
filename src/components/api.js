@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// Buat instance axios untuk API Showroom
 const apiShowroom = axios.create({
   baseURL: 'https://jkt48-showroom-api.vercel.app',
 });
@@ -82,6 +81,18 @@ const getRecentLiveDetail = async (endpoint) => {
     return null;
   }
 };
+
+const getLive = async(endpoint) => {
+  try {
+    const response = await apiShowroomDetail.get(
+      `/api/showroom/watch?room_url_key=${endpoint}`
+    );
+    return response.data
+  } catch (error) {
+    console.error('Gagal mengambil data Live: ', error);
+  };
+
+}
 // Export semua fungsi yang diperlukan
 export { 
   getShowroomData, 
@@ -89,4 +100,6 @@ export {
   getShowroomAdminData,
   getBirthday, 
   getRecentLive, 
-  getRecentLiveDetail};
+  getRecentLiveDetail,
+  getLive
+};
