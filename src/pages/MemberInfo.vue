@@ -261,10 +261,19 @@ export default {
       );
 
       this.getName = this.memberInfo.main_name
-      console.log(this.getName)
       this.memberInfoDetail = await getShowroomDataDetail(`profile?room_url_key=${memberName}&id=${roomId}`)
       this.historyLive = await getShowroomDataDetail(`recent?sort=date&page=1&filter=active&order=-1&perpage=30&search=${this.getName}`)
 
+      // Mengambil URL gambar dari API atau sumber lainnya
+      const imageUrl = this.memberInfo.image; // Gantilah ini dengan URL gambar yang sesuai
+
+      // Membuat elemen <meta> untuk og:media
+      const ogMediaMeta = document.createElement('meta');
+      ogMediaMeta.setAttribute('property', 'og:image');
+      ogMediaMeta.setAttribute('content', imageUrl);
+
+      // Menambahkan elemen <meta> ke dalam elemen <head> dokumen
+      document.head.appendChild(ogMediaMeta);
 
       this.onlivesData = await this.getOnlivesData();
       this.zodiac = this.getZodiacFromDescription(this.memberInfo.description);
