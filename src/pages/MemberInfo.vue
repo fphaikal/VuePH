@@ -217,6 +217,7 @@ import { RouterLink } from "vue-router"
         </div>
 
       </div>
+      <meta property="og:image" :content="ogImage" />
     </div>
   </main>
 </template>
@@ -264,16 +265,6 @@ export default {
       this.memberInfoDetail = await getShowroomDataDetail(`profile?room_url_key=${memberName}&id=${roomId}`)
       this.historyLive = await getShowroomDataDetail(`recent?sort=date&page=1&filter=active&order=-1&perpage=30&search=${this.getName}`)
 
-      // Mengambil URL gambar dari API atau sumber lainnya
-      const imageUrl = this.memberInfo.image; // Gantilah ini dengan URL gambar yang sesuai
-
-      // Membuat elemen <meta> untuk og:image
-      const ogImageMeta = document.createElement('meta');
-      ogImageMeta.setAttribute('property', 'og:image');
-      ogImageMeta.setAttribute('content', imageUrl);
-
-      // Menambahkan elemen <meta> ke dalam elemen <head> dokumen
-      document.head.appendChild(ogImageMeta);
 
       this.onlivesData = await this.getOnlivesData();
       this.zodiac = this.getZodiacFromDescription(this.memberInfo.description);
@@ -285,6 +276,14 @@ export default {
     } catch (error) {
       console.error('Gagal mengambil data member:', error);
     }
+  },
+  computed: {
+    ogImage() {
+      if (this.memberInfo.length > 0) {
+        return this.memberInfo.image;
+      }
+      return '';
+    },
   },
   methods: {
     getShortName(ShortName) {
