@@ -38,20 +38,21 @@
                       <hr>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div v-else>
-          <div class="row mt-3">
-            <div class="col-md-3">
-              <img :src="memberLive.image" alt="" class="img-fluid rounded-4" />
-            </div>
-            <div class="col-md-8">
-              <h3>{{ memberLive.name }}</h3>
-              <p>Room Sedang Offline</p>
+          <div class="container">
+            <div class="row mt-3 p-0 g-0">
+              <div class="col-md-4">
+                <img :src="memberLive.image" alt="" class="img-fluid rounded-4 mb-3" />
+                <h3>{{ memberLive.name }}</h3>
+                <p>Room Sedang Offline</p>
+              </div>
+              <div class="col-md-6">
+              </div>
             </div>
           </div>
         </div>
