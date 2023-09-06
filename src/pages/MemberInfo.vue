@@ -267,13 +267,13 @@ export default {
       // Mengambil URL gambar dari API atau sumber lainnya
       const imageUrl = this.memberInfo.image; // Gantilah ini dengan URL gambar yang sesuai
 
-      // Membuat elemen <meta> untuk og:media
-      const ogMediaMeta = document.createElement('meta');
-      ogMediaMeta.setAttribute('property', 'og:image');
-      ogMediaMeta.setAttribute('content', imageUrl);
+      // Membuat elemen <meta> untuk og:image
+      const ogImageMeta = document.createElement('meta');
+      ogImageMeta.setAttribute('property', 'og:image');
+      ogImageMeta.setAttribute('content', imageUrl);
 
       // Menambahkan elemen <meta> ke dalam elemen <head> dokumen
-      document.head.appendChild(ogMediaMeta);
+      document.head.appendChild(ogImageMeta);
 
       this.onlivesData = await this.getOnlivesData();
       this.zodiac = this.getZodiacFromDescription(this.memberInfo.description);
