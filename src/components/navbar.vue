@@ -54,7 +54,7 @@ import { RouterLink } from 'vue-router';
 
     .navbar.blur {
       backdrop-filter: blur(10px);
-      background-color: rgba(30, 33, 36, 0.7);
+      background-color: rgba(30, 33, 36, 0.8);
       box-shadow: 0 0px 10px rgba(0, 0, 0, 0.7);
     }
 </style>

@@ -158,7 +158,7 @@ import { RouterLink } from "vue-router"
             <div v-for="data in historyLive.recents"  class="card rounded-4 text-light mt-2 " style="background-color: #282b30;">
               <RouterLink :to="'/recent-live/' + data.member.url + '/' + data.data_id">
                 <div class="card-body text-light">
-                  <div class="row rounded-5 ">
+                  <div class="row rounded-5">
                     <div class="col-md-3 col-4 my-md-auto" >
                       <img :src="data.member.img" alt="" class="img-fluid rounded-4">
                     </div>
@@ -279,7 +279,7 @@ export default {
   },
   computed: {
     ogImage() {
-      if (this.memberInfo.length > 0) {
+      if (this.memberInfo) {
         return this.memberInfo.image;
       }
       return '';

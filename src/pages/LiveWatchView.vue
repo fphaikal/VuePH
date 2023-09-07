@@ -10,14 +10,14 @@
             <div class="col-md-9">
               <video-player :options="videoOptions"></video-player>
               <div class="row mt-3">
-                <div class="col-md-2 my-auto">
+                <div class="col-2 my-auto">
                   <img
                     :src="memberLive.image"
                     class="img-fluid rounded-3"
                     alt=""
                   />
                 </div>
-                <div class="col-md-8 my-auto">
+                <div class="col-8 my-auto">
                   <h3 class="">{{ memberLive.name }}</h3>
                 </div>
               </div>
@@ -28,10 +28,10 @@
                   <h5 class="card-title">Comments</h5>
                   <div class="overflow-y-scroll overflow-x-hidden mt-4" style="max-height: 500px;">
                     <div v-for="(comment, index) in comments" :key="comment.ua" class="row g-2">
-                      <div class="col-md-2 my-auto text-center">
+                      <div class="col-2 my-auto text-center">
                         <img :src="comment.avatar_url" alt="Avatar" class="img-fluid rounded-circle" style="max-width: 30px;">
                       </div>
-                      <div class="col-md-8 my-auto">
+                      <div class="col-8 my-auto">
                         <b>{{ comment.name }}</b> <br>
                         {{ comment.comment }}
                       </div>
