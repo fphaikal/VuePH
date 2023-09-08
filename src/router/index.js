@@ -8,7 +8,7 @@ import RecentLiveDetail from '../pages/RecentLiveDetail.vue'
 import AboutView from '../pages/AboutView.vue'
 import LiveWatch from '../pages/LiveWatchView.vue'
 import M3U8Player from '../pages/M3U8PlayerView.vue'
-
+import PageNotFound from '../components/PageNotFound.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -56,6 +56,11 @@ const router = createRouter({
       path: '/watch/m3u8',
       name: 'm3u8player',
       component: M3U8Player
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'pagenotfound',
+      component: PageNotFound
     },
   ]
 })

@@ -2,7 +2,6 @@
 import liveSection from '../components/Home/liveSection.vue';
 import schedulesSection from '../components/Home/schedulesSection.vue';
 import memberSection from '../components/Home/memberSection.vue';
-import traineeSection from '../components/Home/traineeSection.vue';
 import banner from '../components/Home/banner.vue'
 import recentLiveSection from '../components/Home/recentLiveSection.vue';
 import birthdaySection from '../components/Home/birthdaySection.vue';
@@ -34,7 +33,6 @@ import birthdaySection from '../components/Home/birthdaySection.vue';
 
             <div class="row mt-4 g-2">
               <memberSection/>
-              <traineeSection/>
             </div>
           </div>
 
