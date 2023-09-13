@@ -20,6 +20,8 @@
     "videojs-contrib-hls": "^5.15.0",
     "videojs-contrib-hls.js": "^3.2.0",
     "videojs-flash": "^2.2.1",
+    "videojs-logo": "^3.0.0",
+    "videojs-watermark": "^2.0.0",
     "vue": "^3.3.4",
     "vue-hls-player": "^1.0.6",
     "vue-hls-video-player": "^1.0.1",

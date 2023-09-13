@@ -200,7 +200,8 @@ import { RouterLink } from "vue-router"
     </div>
   </main>
 </template>
-  
+
+
 <style>
 @media (max-width: 767px) {
   .mobile-text-center {

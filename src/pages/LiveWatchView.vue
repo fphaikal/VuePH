@@ -10,14 +10,14 @@
             <div class="col-md-9">
               <video-player :options="videoOptions"></video-player>
               <div class="row mt-3">
-                <div class="col-2 my-auto">
+                <div class="col-md-2 col-4 my-auto">
                   <img
                     :src="memberLive.image"
-                    class="img-fluid rounded-3"
+                    class="img-fluid rounded-4"
                     alt=""
                   />
                 </div>
-                <div class="col-8 my-auto">
+                <div class="col-md-8 col-8 my-auto">
                   <h3 class="">{{ memberLive.name }}</h3>
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default {
   beforeDestroy() {
     this.stopPolling();
   },
-  methods: {
+  methods: {    
     setVideoSources() {
       // Mengisi sources dengan data dari streaming_url_list
       this.videoOptions.sources = this.memberLive.streaming_url_list.map(
@@ -126,7 +126,10 @@ export default {
       if (this.intervalId) {
         clearInterval(this.intervalId);
       }
-    }
+    },
+    getShortName(ShortName) {
+      return ShortName.replace("（JKT48）", "")
+    },
   },
 };
 </script>
