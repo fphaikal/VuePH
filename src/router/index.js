@@ -9,6 +9,7 @@ import AboutView from '../pages/AboutView.vue'
 import LiveWatch from '../pages/LiveWatchView.vue'
 import M3U8Player from '../pages/M3U8PlayerView.vue'
 import PageNotFound from '../components/PageNotFound.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -53,9 +54,10 @@ const router = createRouter({
       component: LiveWatch
     },
     {
-      path: '/watch/m3u8',
+      path: '/watch/m3u8/:link?',
       name: 'm3u8player',
-      component: M3U8Player
+      component: M3U8Player,
+      props: true,
     },
     {
       path: '/:pathMatch(.*)*',
@@ -65,4 +67,5 @@ const router = createRouter({
   ]
 })
 
-export default router
+
+export default router;

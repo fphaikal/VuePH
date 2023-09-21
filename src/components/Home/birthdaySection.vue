@@ -6,7 +6,7 @@
       <h3 class="mb-4">Ulang Tahun Bulan Ini</h3>
       <div v-if="birthday">
         <div class="row mb-0">
-            <div v-for="data in birthday" class="col-md-3 col-3 mb-2 mt-0 g-5 text-center">
+            <div v-for="data in birthday" class="col-md-3 col-6 mb-2 mt-0 g-5 text-center">
               <RouterLink :to="'member/' + data.url_key + '/' + data.room_id">
                 <div class="card border-0 rounded-4" style="background-color: #1e2124;">
                     <div class="ratio ratio-1x1">

@@ -57,7 +57,7 @@
         immediate: true, // Memanggil playVideo saat komponen pertama kali dimuat
         },
     },
-    mounted() {
+    async mounted() {
       this.playVideo();  
     },
     methods: {

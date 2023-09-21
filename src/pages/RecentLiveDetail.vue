@@ -60,18 +60,18 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                     <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
                         <text>Penonton</text>
-                        <h5>{{ formatNumber(liveDetail.live_info.viewer) }}({{ formatNumber(liveDetail.live_info.active_viewer) }})</h5>
+                        <h5>{{ formatNumber(liveDetail.live_info.viewers.num) }}({{ formatNumber(liveDetail.live_info.viewers.active) }})</h5>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-6 col-6">
-                    <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
-                      <div class="card-body">
-                        <text>Komentar</text>
-                        <h5>{{ formatNumber(liveDetail.live_info.comments.num) }} ({{ formatNumber(liveDetail.live_info.comments.users) }})</h5>
+                    <div class="col-md-6 col-6" v-if="liveDetail.live_info.comments">
+                      <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
+                        <div class="card-body">
+                          <text>Komentar</text>
+                          <h5>{{ formatNumber(liveDetail.live_info.comments.num) }} ({{ formatNumber(liveDetail.live_info.comments.users) }})</h5>
+                        </div>
                       </div>
                     </div>
-                  </div>
                   <div class="col-md-6 col-6">
                     <div class="card text-light text-center rounded-4 border-0" style="background-color: #1e2124;">
                       <div class="card-body">
