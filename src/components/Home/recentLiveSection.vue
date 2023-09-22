@@ -13,7 +13,7 @@ import formatTimeAgo from '../../utils/formatTimeAgo';
 </div>
 
   <div class="col-md-12 mt-2">
-    <div class="container rounded-4 p-3" style="background-color: #282b30;">
+    <div class=" rounded-4 p-3" style="background-color: #282b30;">
       <div v-if="loading">
         <p class="text-center my-auto">Loading...</p>
       </div>

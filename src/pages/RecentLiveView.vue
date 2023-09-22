@@ -51,7 +51,7 @@ import { RouterLink } from "vue-router"
                                             <path
                                                 d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
                                         </svg>
-                                        <p class="my-auto ms-2">{{ formatNumber(data.live_info.viewers) }}</p>
+                                        <p class="my-auto ms-2">{{ formatNumber(data.live_info.viewers.num) }}</p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -75,9 +75,9 @@ import { RouterLink } from "vue-router"
                                             d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z" />
                                     </svg>
                                     <h6 class="my-auto ms-2">{{ formatTimeAgo(data.live_info.date.end) }}</h6>
-                                    <div @click="redirectToRecentLiveDetail(data.member.url, data.data_id)" class="ms-auto">
-                                        <h6 class="my-auto">Detail ></h6>
-                                    </div>
+                                    <RouterLink :to="'/recent-live/' + data.member.url + '/' + data.data_id" class="ms-auto">
+                                        <h6 class="my-auto text-light">Detail ></h6>
+                                    </RouterLink>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@ import { RouterLink } from "vue-router"
                                                     <path
                                                         d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
                                                 </svg>
-                                                <small class="my-auto ms-2">{{ formatNumber(data.live_info.viewers) }}</small>
+                                                <small class="my-auto ms-2">{{ formatNumber(data.live_info.viewers.num) }}</small>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -147,7 +147,7 @@ import { RouterLink } from "vue-router"
                                     </svg>
                                     <h6 class="my-auto ms-2">{{ formatTimeAgo(data.live_info.date.end) }}</h6>
                                     <RouterLink :to="'recent-live/' + data.member.url + '/' + data.data_id"  class="ms-auto">
-                                        <h6 class="my-auto">Detail ></h6>
+                                        <h6 class="my-auto text-light">Detail ></h6>
                                     </RouterLink>
                                 </div>
                             </div>

@@ -44,7 +44,7 @@ import { RouterLink } from "vue-router"
                 <div class="card-body">
                   <h5 class="text-light mb-3">Room Online</h5>
                   <div v-for="live in onlivesData" :key="live.room_id" class="">
-                    <a :href="'https://www.showroom-live.com/room/profile?room_id=' + live.room_id" target="_blank">
+                    <RouterLink :to="'/watch/' + live.room_url_key+ '/' + live.room_id">
                       <div class="card rounded-4" style="background-color: #1e2124;">
                         <img :src="live.image" class="card-img rounded-4" :alt="live.main_name">
                         <div class="card-body text-light">
@@ -52,7 +52,7 @@ import { RouterLink } from "vue-router"
                           <p class="card-text">Viewers: {{ live.view_num }}</p>
                         </div>
                       </div>
-                    </a>
+                    </RouterLink>
                   </div>
                 </div>
               </div>
@@ -121,9 +121,9 @@ import { RouterLink } from "vue-router"
             </div>
           </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-4">
           <div class="col-12">
-            <h4 class="mb-2">Recent Live</h4>
+            <h4 class="mb-3">Recent Live</h4>
           </div>
         </div>
         <div class="overflow-x-hidden overflow-y-scroll mb-3 rounded-4" style="max-height: 600px;">
@@ -155,7 +155,7 @@ import { RouterLink } from "vue-router"
                           <path
                             d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
                         </svg>
-                        <p class="my-auto ms-2">{{ formatNumber(data.live_info.viewers) }}</p>
+                        <p class="my-auto ms-2">{{ formatNumber(data.live_info.viewers.num) }}</p>
                       </div>
                     </div>
                     <div class="row">
