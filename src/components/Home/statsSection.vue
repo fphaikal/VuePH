@@ -125,7 +125,7 @@ import formatNumber from "../../utils/formatNumber";
           >
             <div class="row g-0">
               <div class="col-8 my-auto">
-                <div class="card-body">
+                <div class="card-body ms-2">
                   <p class="card-title">{{ month.title }}</p>
                   <h4 class="card-text">
                     <b>{{ month.value }}</b>
@@ -184,7 +184,7 @@ import formatNumber from "../../utils/formatNumber";
           >
             <div class="row g-0">
               <div class="col-8 my-auto">
-                <div class="card-body">
+                <div class="card-body ms-2">
                   <p class="card-title">{{ quarter.title }}</p>
                   <h4 class="card-text">
                     <b>{{ quarter.value }}</b>
