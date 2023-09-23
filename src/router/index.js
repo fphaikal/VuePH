@@ -54,10 +54,9 @@ const router = createRouter({
       component: LiveWatch
     },
     {
-      path: '/watch/m3u8/:link?',
+      path: '/watch/m3u8',
       name: 'm3u8player',
       component: M3U8Player,
-      props: true,
     },
     {
       path: '/:pathMatch(.*)*',

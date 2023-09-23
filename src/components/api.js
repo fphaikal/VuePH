@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiShowroom = axios.create({
-  baseURL: 'https://jkt48-showroom-api.vercel.app',
+  baseURL: 'https://vueph-api.fphaikal.my.id',
 });
 
 // Function untuk mengambil data dari API Showroom
@@ -91,7 +91,16 @@ const getLive = async(endpoint) => {
   } catch (error) {
     console.error('Gagal mengambil data Live: ', error);
   };
-
+}
+const getLiveInfo = async(endpoint) => {
+  try {
+    const response = await apiShowroomDetail.get(
+      `/api/showroom/live_info?room_id=${endpoint}`
+    );
+    return response.data
+  } catch (error) {
+    console.error('Gagal mengambil data Live: ', error);
+  };
 }
 // Export semua fungsi yang diperlukan
 export { 
@@ -101,5 +110,6 @@ export {
   getBirthday, 
   getRecentLive, 
   getRecentLiveDetail,
-  getLive
+  getLive,
+  getLiveInfo
 };

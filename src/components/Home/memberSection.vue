@@ -39,7 +39,7 @@ const getUserLink = (user) => {
 </template>
 
 <script>
-import { getShowroomData, getShowroomAdminData } from '../api';
+import { getShowroomData } from '../api';
 
 export default {
   data() {
