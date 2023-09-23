@@ -19,7 +19,7 @@ const getUserLink = (user) => {
         </div>
       </div>
     
-      <div v-if="loading">
+      <div v-if="loading" class="full-height-section">
         <p>Loading...</p>
       </div>
       <div v-else>

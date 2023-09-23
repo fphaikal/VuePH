@@ -11,7 +11,7 @@ import { RouterLink } from "vue-router";
       class="full-height-section text-light"
       style="background-color: #1e2124"
     >
-      <div v-if="memberInfo || memberInfoDetail" class="container">
+      <div v-if="memberInfo || memberInfoDetail || historyLive" class="container">
         <div class="row mt-3">
           <div class="col-md-1 text-center my-auto">
             <img
