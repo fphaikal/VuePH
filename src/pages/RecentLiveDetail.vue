@@ -182,10 +182,6 @@ import formatTimeAgo from "../utils/formatTimeAgo"
   </div>
 </template>
 
-<style>
-
-</style>
-
 <script>
 
 import { getRecentLiveDetail } from "../components/api";

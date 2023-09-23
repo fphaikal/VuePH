@@ -28,6 +28,9 @@ import { RouterLink } from 'vue-router';
                         <RouterLink class="nav-link text-light" aria-current="page" to="/">Home</RouterLink>
                     </li>
                     <li class="nav-item">
+                        <RouterLink class="nav-link text-light" aria-current="page" to="/member">Member Room</RouterLink>
+                    </li>
+                    <li class="nav-item">
                         <RouterLink class="nav-link text-light" to="/theater-schedules">Theater Schedules</RouterLink>
                     </li>
                     <li class="nav-item">
