@@ -92,13 +92,85 @@ import formatNumber from "../../utils/formatNumber";
         <div class="col-12 rounded-4" style="background-color: #282b30">
           <div class="row p-3">
             <div class="col-12">
-              <h3>Top Fans</h3>
-
+              <div class="d-flex">
+                <h3>Top Fans</h3>
+                <button
+                  type="button"
+                  class="btn border-0 rounded-4 ms-auto text-light"
+                  style="background-color: #1e2124"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Selengkapnya
+                </button>
+                <!-- Modal -->
+                <div
+                  class="modal fade rounded-4"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog rounded-4">
+                    <div
+                      class="modal-content rounded-4"
+                      style="background-color: #282b30"
+                    >
+                      <div class="modal-header" data-bs-theme="dark">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Top Fans
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <div
+                          class="overflow-y-scroll overflow-x-hidden"
+                          style="max-height: 500px"
+                        >
+                          <div v-for="(data, index) in fansWeek" :key="data.id">
+                            <div class="row g-2 mt-2">
+                              <div class="col-1 my-auto">{{ index + 1 }}</div>
+                              <div class="col-2 my-auto text-center mx-auto">
+                                <img
+                                  :src="`https://static.showroom-live.com/image/avatar/${data.avatar_id}.png`"
+                                  class="img-fluid"
+                                  width="50"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="col-9 my-auto">
+                                <h6 class="m-0 my-auto">
+                                  {{ data.name }}
+                                </h6>
+                                <a>{{ formatNumber(data.fans_point) }}pts</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="row mt-3 g-1">
-                <div v-for="(data, index) in fansWeek.slice(0,12)" :key="data.id" class="col-md-4 mb-3">
+                <div
+                  v-for="(data, index) in fansWeek.slice(0, 12)"
+                  :key="data.id"
+                  class="col-md-4 mb-3"
+                >
                   <div class="row g-1">
                     <div class="col-2 my-auto">
-                      <img :src="`https://static.showroom-live.com/image/avatar/${data.avatar_id}.png`" class="img-fluid" width="100" alt="">
+                      <img
+                        :src="`https://static.showroom-live.com/image/avatar/${data.avatar_id}.png`"
+                        class="img-fluid"
+                        width="100"
+                        alt=""
+                      />
                     </div>
                     <div class="col-10 my-auto">
                       <h6 class="m-0 my-auto">
@@ -153,13 +225,86 @@ import formatNumber from "../../utils/formatNumber";
         <div class="col-12 rounded-4" style="background-color: #282b30">
           <div class="row p-3">
             <div class="col-12">
-              <h3>Top Fans</h3>
+                <div class="d-flex">
+                <h3>Top Fans</h3>
+                <button
+                  type="button"
+                  class="btn border-0 rounded-4 ms-auto text-light"
+                  style="background-color: #1e2124"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Selengkapnya
+                </button>
+                <!-- Modal -->
+                <div
+                  class="modal fade rounded-4"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog rounded-4">
+                    <div
+                      class="modal-content rounded-4"
+                      style="background-color: #282b30"
+                    >
+                      <div class="modal-header" data-bs-theme="dark">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Top Fans
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <div
+                          class="overflow-y-scroll overflow-x-hidden"
+                          style="max-height: 500px"
+                        >
+                          <div v-for="(data, index) in fansMonth" :key="data.id">
+                            <div class="row g-2 mt-2">
+                              <div class="col-1 my-auto">{{ index + 1 }}</div>
+                              <div class="col-2 my-auto text-center mx-auto">
+                                <img
+                                  :src="`https://static.showroom-live.com/image/avatar/${data.avatar_id}.png`"
+                                  class="img-fluid"
+                                  width="50"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="col-9 my-auto">
+                                <h6 class="m-0 my-auto">
+                                  {{ data.name }}
+                                </h6>
+                                <a>{{ formatNumber(data.fans_point) }}pts</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div class="row mt-3 g-1">
-                <div v-for="(data, index) in fansMonth.slice(0,12)" :key="data.id" class="col-md-4 mb-3">
+                <div
+                  v-for="(data, index) in fansMonth.slice(0, 12)"
+                  :key="data.id"
+                  class="col-md-4 mb-3"
+                >
                   <div class="row g-1">
                     <div class="col-2 my-auto">
-                      <img :src="`https://static.showroom-live.com/image/avatar/${data.avatar_id}.png`" class="img-fluid" width="100" alt="">
+                      <img
+                        :src="`https://static.showroom-live.com/image/avatar/${data.avatar_id}.png`"
+                        class="img-fluid"
+                        width="100"
+                        alt=""
+                      />
                     </div>
                     <div class="col-10 my-auto">
                       <h6 class="m-0 my-auto">
@@ -212,13 +357,86 @@ import formatNumber from "../../utils/formatNumber";
         <div class="col-12 rounded-4" style="background-color: #282b30">
           <div class="row p-3">
             <div class="col-12">
-              <h3>Top Fans</h3>
+                <div class="d-flex">
+                <h3>Top Fans</h3>
+                <button
+                  type="button"
+                  class="btn border-0 rounded-4 ms-auto text-light"
+                  style="background-color: #1e2124"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Selengkapnya
+                </button>
+                <!-- Modal -->
+                <div
+                  class="modal fade rounded-4"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog rounded-4">
+                    <div
+                      class="modal-content rounded-4"
+                      style="background-color: #282b30"
+                    >
+                      <div class="modal-header" data-bs-theme="dark">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Top Fans
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <div
+                          class="overflow-y-scroll overflow-x-hidden"
+                          style="max-height: 500px"
+                        >
+                          <div v-for="(data, index) in fansQuarter" :key="data.id">
+                            <div class="row g-2 mt-2">
+                              <div class="col-1 my-auto">{{ index + 1 }}</div>
+                              <div class="col-2 my-auto text-center mx-auto">
+                                <img
+                                  :src="`https://static.showroom-live.com/image/avatar/${data.avatar_id}.png`"
+                                  class="img-fluid"
+                                  width="50"
+                                  alt=""
+                                />
+                              </div>
+                              <div class="col-9 my-auto">
+                                <h6 class="m-0 my-auto">
+                                  {{ data.name }}
+                                </h6>
+                                <a>{{ formatNumber(data.fans_point) }}pts</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div class="row mt-3 g-1">
-                <div v-for="(data, index) in fansQuarter.slice(0,12)" :key="data.id" class="col-md-4 mb-3">
+                <div
+                  v-for="(data, index) in fansQuarter.slice(0, 12)"
+                  :key="data.id"
+                  class="col-md-4 mb-3"
+                >
                   <div class="row g-1">
                     <div class="col-2 my-auto">
-                      <img :src="`https://static.showroom-live.com/image/avatar/${data.avatar_id}.png`" class="img-fluid" width="100" alt="">
+                      <img
+                        :src="`https://static.showroom-live.com/image/avatar/${data.avatar_id}.png`"
+                        class="img-fluid"
+                        width="100"
+                        alt=""
+                      />
                     </div>
                     <div class="col-10 my-auto">
                       <h6 class="m-0 my-auto">
@@ -244,12 +462,13 @@ export default {
   data() {
     return {
       selectedOption: "7 Hari",
+      showingToast: false,
       statsWeek: [],
       statsMonthly: [],
       statsQuarter: [],
       fansWeek: [],
       fansMonth: [],
-      fansQuarter: []
+      fansQuarter: [],
     };
   },
 
@@ -258,9 +477,21 @@ export default {
     this.statsMonthly = await getShowroomDataDetail(`stats?type=monthly`);
     this.statsQuarter = await getShowroomDataDetail(`stats?type=quarterly`);
 
-    this.fansWeek = this.statsWeek.ranks.fans
-    this.fansMonth = this.statsMonthly.ranks.fans
-    this.fansQuarter = this.statsQuarter.ranks.fans
+    this.fansWeek = this.statsWeek.ranks.fans;
+    this.fansMonth = this.statsMonthly.ranks.fans;
+    this.fansQuarter = this.statsQuarter.ranks.fans;
+  },
+  methods: {
+    showToast() {
+      this.showingToast = true;
+      // Menampilkan toast
+      var toastElList = [].slice.call(document.querySelectorAll(".toast"));
+      var toastList = toastElList.map(function (toastEl) {
+        return new bootstrap.Toast(toastEl);
+      });
+      toastList[0].show(); // Menampilkan toast pertama
+    },
+    // Metode lainnya
   },
 };
 </script>
