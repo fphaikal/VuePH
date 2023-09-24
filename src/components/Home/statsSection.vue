@@ -55,7 +55,7 @@ import formatNumber from "../../utils/formatNumber";
   </div>
   <hr class="mb-1" />
 
-  <!-- Isi Konter -->
+  <!-- Isi Konten -->
   <div v-if="selectedOption === '7 Hari'">
     <div v-if="statsWeek">
       <div class="row g-2 p-0">
@@ -114,7 +114,9 @@ import formatNumber from "../../utils/formatNumber";
         </div>
       </div>
     </div>
+    <div v-else></div>
   </div>
+
   <div v-if="selectedOption === '4 Minggu'">
     <div v-if="statsMonthly">
       <div class="row g-2 p-0">

@@ -57,6 +57,7 @@ export default {
   async mounted() {
     await this.loadData(); // Pindahkan pengambilan data ke metode loadData
     this.loading = false;
+    
   },
 
   watch: {
