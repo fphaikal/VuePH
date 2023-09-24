@@ -12,7 +12,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
         <div class="row mt-4 mb-4 text-light">
           <div class="col-md-9 col-12">
 
-            <div class="row">
+            <RouterLink :to="'/member/' + liveDetail.room_info.url + '/' + liveDetail.room_id" class="row text-light">
               <div class="col-md-2 col-3 my-auto">
                 <div class="ratio ratio-1x1" style="position: relative;">
                   <img :src="liveDetail.room_info.img_alt" class="card-img-top rounded-circle my-auto" 
@@ -24,7 +24,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
                 <h2>{{ liveDetail.room_info.name }}</h2>
                 <Generation class="badge rounded-pill text-bg-success">Generasi {{ getGeneration(liveDetail.room_info.generation) }}</Generation>
               </div>
-            </div>
+            </RouterLink>
             <hr>
           
             <div class="row g-2">

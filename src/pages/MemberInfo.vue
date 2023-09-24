@@ -33,9 +33,9 @@ import { RouterLink } from "vue-router";
             <div class="card rounded-4 shadow mb-2" style="background-color: #282b30">
               <img :src="memberInfo.image" class="card-img rounded-top-4 shadow d-none d-md-block" alt="Test" />
               <div v-if="memberInfo.is_onlive">
-                <div class="card-body text-light text-center">
+                <RouterLink :to="'/watch/' + memberInfo.room_url_key + '/' + memberInfo.id" class="card-body text-light text-center">
                   <b>Room Sedang Online</b>
-                </div>
+                </RouterLink>
               </div>
               <div v-else>
                 <div class="card-body text-light text-center">
