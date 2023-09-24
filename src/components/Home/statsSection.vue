@@ -2,10 +2,10 @@
 import formatNumber from "../../utils/formatNumber";
 </script>
 <template>
-  <div class="col-md-8 my-auto">
+  <div class="col-md-8 col-3 my-auto">
     <h3>Statistik</h3>
-  </div>
-  <div class="col-md-4 my-auto d-flex justify-content-end">
+  </div>    
+  <div class="col-md-4 col-9 my-auto d-flex justify-content-end">
     <div class="btn-group" role="group" aria-label="Statistik">
       <input
         type="radio"
