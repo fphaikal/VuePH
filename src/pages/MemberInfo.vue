@@ -161,8 +161,9 @@ import { RouterLink } from "vue-router";
             </div>
           </div>
         </div>
+
         <div v-if="selectedOption === '7 Hari'">
-          <div v-if="statsWeek.stats.value > 0">
+          <div v-if="statsWeek.stats.some(week => week.value > 0)">
             <div class="row g-2 p-0 mt-1">
               <div v-for="week in statsWeek.stats" class="col-md-3 col-6">
                 <div class="card rounded-4 text-light" style="background-color: #282b30">
@@ -176,7 +177,7 @@ import { RouterLink } from "vue-router";
               </div>
             </div>
             <!--Top Fans Scrion-->
-            <div class="row g-1 mt-1">
+            <div class="row g-1 mt-1" >
               <div class="col-12 rounded-4" style="background-color: #282b30">
                 <div class="row p-3">
                   <div class="col-12">
@@ -205,9 +206,9 @@ import { RouterLink } from "vue-router";
           <div v-else>
             <div class="row mt-2">
               <div class="col-12">
-                <div class="card text-light" style="background-color: #282b30;">
+                <div class="card text-light rounded-4" style="background-color: #282b30;">
                   <div class="card-body text-center">
-                    <h5 class="card-title">Tidak Ada Data yang Ditampilkan</h5>
+                    <h5 class="card-title m-0">Tidak Ada Data yang Ditampilkan</h5>
                   </div>
                 </div>
               </div>
@@ -215,7 +216,7 @@ import { RouterLink } from "vue-router";
           </div>
         </div>
         <div v-if="selectedOption === '4 Minggu'">
-          <div v-if="statsMonthly.stats.value > 0">
+          <div v-if="statsMonthly.stats.some(month => month.value > 0)">
             <div class="row g-2 p-0 mt-1">
               <div v-for="month in statsMonthly.stats" class="col-md-3 col-6">
                 <div class="card rounded-4 text-light" style="background-color: #282b30">
@@ -258,9 +259,9 @@ import { RouterLink } from "vue-router";
           <div v-else>
             <div class="row mt-2">
               <div class="col-12">
-                <div class="card text-light" style="background-color: #282b30;">
+                <div class="card text-light rounded-4" style="background-color: #282b30;">
                   <div class="card-body text-center">
-                    <h5 class="card-title">Tidak Ada Data yang Ditampilkan</h5>
+                    <h5 class="card-title m-0">Tidak Ada Data yang Ditampilkan</h5>
                   </div>
                 </div>
               </div>
@@ -413,6 +414,7 @@ import { RouterLink } from "vue-router";
   }
 }
 </style>
+
 <script>
 import { getShowroomData, getShowroomDataDetail } from "../components/api";
 
@@ -426,12 +428,13 @@ export default {
       onlivesData: [],
       memberInfoDetail: null,
       historyLive: null,
-      statsWeek: [],
+      statsWeek: null,
       statsMonthly: [],
       statsAll: [],
-      fansWeek: [],
+      fansWeek: null,
       fansMonth: [],
-      fansAll: []
+      fansAll: [],
+      
     };
   },
   async mounted() {
