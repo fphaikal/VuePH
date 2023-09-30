@@ -449,9 +449,10 @@ export default {
       );
 
       this.getName = this.memberInfo.main_name;
+      this.getRoomKey = this.memberInfo.room_url_key;
+      this.getRoomId = this.memberInfo.room_id;
       this.getImage = this.memberInfo.image;
-      console.log(this.getImage)
-      
+
       this.memberInfoDetail = await getShowroomDataDetail(
         `profile?room_url_key=${memberName}&id=${roomId}`
       );
@@ -487,6 +488,10 @@ export default {
         {
           property: 'og:image',
           content: `${this.getImage}`,
+        },
+        {
+          property: 'og:url',
+          content: `https://vueph.fphaikal.my.id/member/${this.getRoomKey}/${this.getRoomId}`,
         },
       ],
     });
