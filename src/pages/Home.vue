@@ -1,12 +1,13 @@
 <script setup>
 import liveSection from '../components/Home/liveSection.vue';
-import schedulesSection from '../components/Home/schedulesSection.vue';
+import theaterScheduleSection from '../components/Home/theaterSchedulesSection.vue';
 import memberSection from '../components/Home/memberSection.vue';
 import banner from '../components/Home/banner.vue'
 import recentLiveSection from '../components/Home/recentLiveSection.vue';
 import birthdaySection from '../components/Home/birthdaySection.vue';
 import statsSection from '../components/Home/statsSection.vue'
 import newsSection from '../components/Home/newsSection.vue';
+import scheduleSection from '../components/Home/scheduleSection.vue';
 </script>
 
 <template>
@@ -38,12 +39,16 @@ import newsSection from '../components/Home/newsSection.vue';
             </div>
 
             <div class="row mt-4 g-2">
+              <scheduleSection/>
+            </div>
+            
+            <div class="row mt-4 g-2">
               <newsSection/>
             </div>
           </div>
 
           <div class="col-md-3">
-            <schedulesSection/>
+            <theaterScheduleSection/>
           </div>
         </div>
       </div>

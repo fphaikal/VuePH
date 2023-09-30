@@ -23,6 +23,14 @@ const getNews = async(endpoint) => {
     console.error('Gagal mengambil data News dari web jkt48.com')
   }
 }
+const getSchedule = async(endpoint) => {
+  try {
+    const response = await apiShowroom.get(`/api/${endpoint}`)
+    return response.data;
+  } catch (error) {
+    console.error('Gagal mengambil data News dari web jkt48.com')
+  }
+}
 
 const apiShowroomAdmin = axios.create({
   baseURL: 'https://showroom-admin.ikhbaldwiyan.repl.co/',
@@ -123,5 +131,6 @@ export {
   getRecentLiveDetail,
   getLive,
   getLiveInfo,
-  getNews
+  getNews,
+  getSchedule
 };

@@ -4,7 +4,7 @@
       <div v-if="newsDetail">
         <div class="row g-5">
           <div class="col-8 text-light">
-            <h3>{{ newsDetail[0].title }}</h3>
+            <h3>{{ newsDetail[0].title }}</h3>  
             <small>{{ newsDetail[0].time }}</small>
             <p class="mt-4" v-html="formatNewsText(newsDetail[0].news)"></p>
             <div v-for="img in newsDetail[0].imageUrls">
@@ -15,7 +15,7 @@
             <h3>News</h3>
             <div v-if="news">
               <div class="row">
-                <div v-for="data in news.newsDataList.slice(0,5)" class="col-12 mb-2">
+                <div v-for="data in news.newsDataList.slice(0,7)" class="col-12 mb-2">
                   <RouterLink :to="'/news/detail/' + data.id" @click="loadNewsDetail(data.id)" class="card text-light rounded-4" style="background-color: #282b30;">
                     <div class="card-body">
                       <img :src="'https://jkt48.com/' +data.img" class="img-fluid rounded-3 mb-1" alt="">
@@ -47,7 +47,6 @@ export default {
     const idNews = this.$route.params.idNews
     this.newsDetail = await getNews(`news/detail/${idNews}`)
     this.news = await getNews('news')
-    console.log(this.newsDetail)
   },
 
   methods: {

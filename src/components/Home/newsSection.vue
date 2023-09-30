@@ -3,10 +3,10 @@
 
   <div v-if="news">
     <div class="row">
-      <div v-for="data in news.newsDataList" class="col-12 mb-2">
+      <div v-for="data in news.newsDataList.slice(0,5)" class="col-12 mb-2">
         <RouterLink :to="'/news/detail/' + data.id" class="card text-light rounded-4" style="background-color: #282b30;">
           <div class="card-body">
-            <img :src="'https://jkt48.com/' +data.img" class="img-fluid rounded-3 mb-1" alt="">
+            <img :src="'https://jkt48.com/' + data.img" class="img-fluid rounded-3 mb-1" alt="">
             <h6 class="card-title mb-0">{{ data.title }}</h6>
             <small class="card-text m-0">{{ data.time }}</small>
           </div>
@@ -23,7 +23,7 @@ import { getNews } from "../api";
 export default {
     data() {
         return {
-            news: [],
+          news: [],
         };
     },
     async mounted() {
