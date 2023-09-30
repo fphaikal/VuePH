@@ -15,6 +15,15 @@ const getShowroomData = async (endpoint) => {
   }
 };
 
+const getNews = async(endpoint) => {
+  try {
+    const response = await apiShowroom.get(`/api/${endpoint}`)
+    return response.data;
+  } catch (error) {
+    console.error('Gagal mengambil data News dari web jkt48.com')
+  }
+}
+
 const apiShowroomAdmin = axios.create({
   baseURL: 'https://showroom-admin.ikhbaldwiyan.repl.co/',
 });
@@ -102,6 +111,8 @@ const getLiveInfo = async(endpoint) => {
     console.error('Gagal mengambil data Live: ', error);
   };
 }
+
+
 // Export semua fungsi yang diperlukan
 export { 
   getShowroomData, 
@@ -111,5 +122,6 @@ export {
   getRecentLive, 
   getRecentLiveDetail,
   getLive,
-  getLiveInfo
+  getLiveInfo,
+  getNews
 };

@@ -6,6 +6,7 @@ import banner from '../components/Home/banner.vue'
 import recentLiveSection from '../components/Home/recentLiveSection.vue';
 import birthdaySection from '../components/Home/birthdaySection.vue';
 import statsSection from '../components/Home/statsSection.vue'
+import newsSection from '../components/Home/newsSection.vue';
 </script>
 
 <template>
@@ -34,6 +35,10 @@ import statsSection from '../components/Home/statsSection.vue'
 
             <div class="row mt-4 g-2">
               <statsSection/>
+            </div>
+
+            <div class="row mt-4 g-2">
+              <newsSection/>
             </div>
           </div>
 

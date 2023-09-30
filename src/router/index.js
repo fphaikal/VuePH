@@ -10,6 +10,7 @@ import LiveWatch from '../pages/LiveWatchView.vue'
 import M3U8Player from '../pages/M3U8PlayerView.vue'
 import PageNotFound from '../components/PageNotFound.vue'
 import MemberRoom from '../components/Home/memberSection.vue'
+import News from '../pages/news/[id].vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -63,6 +64,11 @@ const router = createRouter({
       path: '/member',
       name: 'memberRoom',
       component: MemberRoom,
+    },
+    {
+      path: '/news/detail/:idNews',
+      name: 'news',
+      component: News,
     },
     {
       path: '/:pathMatch(.*)*',
