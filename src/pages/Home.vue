@@ -8,6 +8,7 @@ import birthdaySection from '../components/Home/birthdaySection.vue';
 import statsSection from '../components/Home/statsSection.vue'
 import newsSection from '../components/Home/newsSection.vue';
 import scheduleSection from '../components/Home/scheduleSection.vue';
+
 </script>
 
 <template>
@@ -41,7 +42,7 @@ import scheduleSection from '../components/Home/scheduleSection.vue';
             <div class="row mt-4 g-2">
               <scheduleSection/>
             </div>
-            
+
             <div class="row mt-4 g-2">
               <newsSection/>
             </div>
@@ -55,3 +56,15 @@ import scheduleSection from '../components/Home/scheduleSection.vue';
     </div>
   </main>
 </template>
+
+<script>
+import { useHead } from '@unhead/vue';
+
+export default {
+  async mounted() {
+    useHead({
+      title: `Home | VuePH`,
+    });
+  }
+}
+</script>

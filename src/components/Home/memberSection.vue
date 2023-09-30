@@ -43,8 +43,10 @@ const getUserLink = (user) => {
 
 <script>
 import { getShowroomData } from '../api';
+import { useHead } from '@unhead/vue';
 
 export default {
+  
   data() {
     return {
       allMembers: [],
@@ -57,7 +59,9 @@ export default {
   async mounted() {
     await this.loadData(); // Pindahkan pengambilan data ke metode loadData
     this.loading = false;
-    
+    useHead({
+      title: `Member Room | VuePH`,
+    });
   },
 
   watch: {

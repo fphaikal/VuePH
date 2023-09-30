@@ -415,8 +415,9 @@ import { RouterLink } from "vue-router";
 }
 </style>
 
-<script>
+<script >
 import { getShowroomData, getShowroomDataDetail } from "../components/api";
+import { useHead } from '@unhead/vue';
 
 export default {
   data() {
@@ -437,6 +438,7 @@ export default {
       
     };
   },
+  
   async mounted() {
     try {
       const roomId = this.$route.params.roomId;
@@ -447,6 +449,9 @@ export default {
       );
 
       this.getName = this.memberInfo.main_name;
+      this.getImage = this.memberInfo.image;
+      console.log(this.getImage)
+      
       this.memberInfoDetail = await getShowroomDataDetail(
         `profile?room_url_key=${memberName}&id=${roomId}`
       );
@@ -476,7 +481,17 @@ export default {
     } catch (error) {
       console.error("Gagal mengambil data member:", error);
     }
+    useHead({
+      title: `${this.getName || 'VuePH'}| VuePH`,
+      meta: [
+        {
+          property: 'og:image',
+          content: `${this.getImage}`,
+        },
+      ],
+    });
   },
+
   computed: {
     ogImage() {
       if (this.memberInfo) {

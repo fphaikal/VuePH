@@ -3,6 +3,7 @@ import './assets/base.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createHead } from '@unhead/vue'
 import "video.js/dist/video-js.css"
 import "videojs-watermark/dist/videojs-watermark.css"
 
@@ -15,6 +16,10 @@ import 'bootstrap/dist/js/bootstrap.min'
 
 
 const app = createApp(App)
+const head = createHead()
+app.use(head)
 app.use(createPinia())
 app.use(router)
 app.mount('#app')
+
+

@@ -39,6 +39,14 @@
   </main>
 </template>
 
-<style>
+<script> 
+import { useHead } from '@unhead/vue';
 
-</style>
+export default {
+  async mounted() {
+    useHead({
+      title: `About | VuePH`,
+    });
+  }
+}
+</script>
