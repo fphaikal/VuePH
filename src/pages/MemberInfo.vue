@@ -657,7 +657,7 @@ export default {
         title: `${this.getName} | VuePH`,
         meta: [
           {
-            name: 'description',
+            name: 'og:description',
             content: `${this.getName} adalah member resmi dari idol grup JKT48`,
           },
           {
