@@ -4,7 +4,9 @@ const getUserLink = (user) => {
   const userId = user.id || user.room_id;
   return `/member/${urlKey}/${userId}`;
 };
-
+useHead({
+      title: `Member Room | VuePH`,
+    });
 </script>
 
 <template>
@@ -59,9 +61,7 @@ export default {
   async mounted() {
     await this.loadData(); // Pindahkan pengambilan data ke metode loadData
     this.loading = false;
-    useHead({
-      title: `Member Room | VuePH`,
-    });
+    
   },
 
   watch: {

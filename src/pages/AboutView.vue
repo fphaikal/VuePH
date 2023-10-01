@@ -46,6 +46,12 @@ export default {
   async mounted() {
     useHead({
       title: `About | VuePH`,
+      meta: [
+        {
+          name: 'description',
+          content: this.$route.meta.description,
+        },
+      ],
     });
   }
 }

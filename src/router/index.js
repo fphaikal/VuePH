@@ -18,32 +18,53 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: 'Home | VuePH',
+        description: 'Di website ini anda dapat melihat kapan member terakhir kali live dan melihat live SHOWROOM member, serta schedule dan berita resmi dari JKT48',
+      },
     },
     {
       path: '/about',
       name: 'about', 
-      component: AboutView,     
+      component: AboutView,   
+      meta: {
+        title: 'About | VuePH',
+        description: 'Perjalanan bagaimana website ini dibuat',
+      },
     },
     {
       path: '/member/:memberName/:roomId',
       name: 'MemberInfo',
       component: MemberInfo,
+      meta: {
+        title: 'Member Room | VuePH',
+        description: 'Disini anda dapat melihat biodata member, statistik selama live SHOWROOM, dan history live SHOWROOM member'
+      },
     },
     {
       path: '/setlist/:setlistId',
       name: 'SetlistInfo',
       component: SetlistInfo,
+      meta: {
+        title: 'Setlist | VuePH',
+      },
     },
     {
       path: '/theater-schedules',
       name: 'schedules',
       component: TheaterSchedules,
+      meta: {
+        title: 'Theater | VuePH',
+      },
     },
     {
       path: '/recent-live',
       name: 'recentLive',
       component: RecentLiveView,
+      meta: {
+        title: 'Recent Live | VuePH',
+      },
     },
     {
       path: '/recent-live/:memberName/:dataId',
@@ -64,16 +85,25 @@ const router = createRouter({
       path: '/member',
       name: 'memberRoom',
       component: MemberRoom,
+      meta: {
+        title: 'List Member | VuePH',
+      },
     },
     {
       path: '/news/detail/:idNews',
       name: 'news',
       component: News,
+      meta: {
+        title: 'News | VuePH',
+      },
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'pagenotfound',
-      component: PageNotFound
+      component: PageNotFound,
+      meta: {
+        title: 'Page Not Found | VuePH',
+      },
     },
   ]
 })

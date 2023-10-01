@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@splidejs/splide": "^4.1.4",
+    "@unhead/addons": "^1.7.4",
     "@unhead/vue": "^1.7.4",
     "@videojs-player/vue": "^1.0.0",
     "@vime/core": "^5.4.1",

@@ -35,6 +35,10 @@
 
 <script>
 import { getNews } from '../../components/api';
+import { useHead } from '@unhead/vue';
+import { InferSeoMetaPlugin } from '@unhead/addons'
+
+
 export default {
   data() {
     return {
@@ -47,6 +51,12 @@ export default {
     const idNews = this.$route.params.idNews
     this.newsDetail = await getNews(`news/detail/${idNews}`)
     this.news = await getNews('news')
+
+    this.titleNews = await this.newsDetail[0].title
+
+    useHead({
+      title: `${this.titleNews } | VuePH`,
+    });
   },
 
   methods: {

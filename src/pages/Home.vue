@@ -63,7 +63,13 @@ import { useHead } from '@unhead/vue';
 export default {
   async mounted() {
     useHead({
-      title: `Home | VuePH`,
+      title: this.$route.meta.title || 'VuePH',
+      meta: [
+        {
+          name: 'description',
+          content: this.$route.meta.description,
+        },
+      ],
     });
   }
 }

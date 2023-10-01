@@ -17,6 +17,11 @@ import 'bootstrap/dist/js/bootstrap.min'
 
 const app = createApp(App)
 const head = createHead()
+
+app.config.head = {
+    title: "VuePH",
+  };
+  
 app.use(head)
 app.use(createPinia())
 app.use(router)
