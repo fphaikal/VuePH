@@ -661,7 +661,7 @@ export default {
             content: `${this.getName} adalah member resmi dari idol grup JKT48`,
           },
           {
-            property: 'og:image',
+            name: 'og:image',
             content: `${this.getImage}`,
           },
         ],
