@@ -657,11 +657,11 @@ export default {
         title: `${this.getName} | VuePH`,
         meta: [
           {
-            name: 'og:description',
+            property: 'og:description',
             content: `${this.getName} adalah member resmi dari idol grup JKT48`,
           },
           {
-            name: 'og:image',
+            property: 'og:image',
             content: `${this.getImage}`,
           },
         ],
