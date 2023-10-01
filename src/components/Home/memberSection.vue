@@ -5,8 +5,14 @@ const getUserLink = (user) => {
   return `/member/${urlKey}/${userId}`;
 };
 useHead({
-      title: `Member Room | VuePH`,
-    });
+    title: `Member Room | VuePH`,
+    meta: [
+      {
+        property: 'og:title',
+        content: `Member Room | VuePH`,
+      },
+    ]
+});
 </script>
 
 <template>

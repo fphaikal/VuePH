@@ -22,7 +22,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
               </div>
               <div class="col-md-10 col-9 my-auto">
                 <h2>{{ liveDetail.room_info.name }}</h2>
-                <Generation class="badge rounded-pill text-bg-success">Generasi {{ getGeneration(liveDetail.room_info.generation) }}</Generation>
+                <div class="badge rounded-pill text-bg-success">Generasi {{ getGeneration(liveDetail.room_info.generation) }}</div>
               </div>
             </RouterLink>
             <hr>
@@ -183,7 +183,7 @@ import formatTimeAgo from "../utils/formatTimeAgo"
 </template>
 
 <script>
-
+import { useHead } from "@unhead/vue";
 import { getRecentLiveDetail } from "../components/api";
 
 export default {
@@ -198,10 +198,39 @@ export default {
       const getDataId = this.$route.params.dataId;
       this.liveDetail = await getRecentLiveDetail(`recent/${getDataId}`);
 
-
+      this.getName = await this.liveDetail.room_info.name
+      this.getImage = await this.liveDetail.room_info.img
+      this.getRoomKey = await this.liveDetail.room_info.url
+      this.getRoomId = await this.liveDetail.room_id
+      
     } catch (error) {
       console.log(error);
     }
+    useHead({
+        title: `${this.getName}- Recent Live | VuePH`,
+        meta: [
+          {
+            name: 'description',
+            content: `Lihatlah rekapan dari live SHOWROOM terbaru ${this.getName}`,
+          },
+          {
+            property: 'og:title',
+            content: `${this.getName}`,
+          },
+          {
+            property: 'og:description',
+            content: `Lihatlah rekapan dari live SHOWROOM terbaru ${this.getName}`,
+          },
+          {
+            property: 'og:image',
+            content: `${this.getImage}`,
+          },
+          {
+            property: 'og:url',
+            content: `https://vueph.fphaikal.my.id/member/${this.getRoomKey}/${this.getRoomId}`,
+          },
+        ],
+      })
   },
   created() {
     // Saat komponen di-load, cek ukuran layar dan atur smScreen

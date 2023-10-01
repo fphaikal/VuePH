@@ -69,6 +69,14 @@ export default {
           name: 'description',
           content: this.$route.meta.description,
         },
+        {
+          property: 'og:title',
+          content: this.$route.meta.title,
+        },
+        {
+          property: 'og:description',
+          content: this.$route.meta.description,
+        },
       ],
     });
   }

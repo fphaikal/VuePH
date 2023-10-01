@@ -654,8 +654,16 @@ export default {
       console.error("Gagal mengambil data member:", error);
     }
       useHead({
-        title: `${this.getName} | VuePH`,
+        title: `${this.getName}| VuePH`,
         meta: [
+          {
+            name: 'description',
+            content: `${this.getName} adalah member resmi dari idol grup JKT48`,
+          },
+          {
+            property: 'og:title',
+            content: `${this.getName}`,
+          },
           {
             property: 'og:description',
             content: `${this.getName} adalah member resmi dari idol grup JKT48`,
@@ -663,6 +671,10 @@ export default {
           {
             property: 'og:image',
             content: `${this.getImage}`,
+          },
+          {
+            property: 'og:url',
+            content: `https://vueph.fphaikal.my.id/member/${this.getRoomKey}/${this.getRoomId}`,
           },
         ],
       })

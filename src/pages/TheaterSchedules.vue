@@ -59,6 +59,7 @@
 
 <script>
 import { getShowroomAdminData } from '../components/api';
+import { useHead } from '@unhead/vue';
 
 export default {
     data() {
@@ -68,6 +69,24 @@ export default {
     },
     async mounted() {
         this.schedules = await getShowroomAdminData('schedules')
+
+        useHead({
+            title: this.$route.meta.title || 'VuePH',
+            meta: [
+                {
+                name: 'description',
+                content: this.$route.meta.description,
+                },
+                {
+                property: 'og:title',
+                content: this.$route.meta.title,
+                },
+                {
+                property: 'og:description',
+                content: this.$route.meta.description,
+                },
+            ],
+            });
     },
      
     computed: {

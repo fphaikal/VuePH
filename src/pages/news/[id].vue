@@ -3,7 +3,7 @@
     <div class="container">
       <div v-if="newsDetail">
         <div class="row g-5">
-          <div class="col-8 text-light">
+          <div class="col-12 col-md-8 text-light">
             <h3>{{ newsDetail[0].title }}</h3>  
             <small>{{ newsDetail[0].time }}</small>
             <p class="mt-4" v-html="formatNewsText(newsDetail[0].news)"></p>
@@ -11,7 +11,7 @@
               <img :src="img" class="img-fluid mb-2" alt="">
             </div>
           </div>
-          <div class="col-4 text-light">
+          <div class=" col-md-4 text-light">
             <h3>News</h3>
             <div v-if="news">
               <div class="row">
@@ -36,8 +36,6 @@
 <script>
 import { getNews } from '../../components/api';
 import { useHead } from '@unhead/vue';
-import { InferSeoMetaPlugin } from '@unhead/addons'
-
 
 export default {
   data() {
@@ -48,14 +46,30 @@ export default {
   },
 
   async mounted() {
-    const idNews = this.$route.params.idNews
-    this.newsDetail = await getNews(`news/detail/${idNews}`)
+    this.idNews = this.$route.params.idNews
+    this.newsDetail = await getNews(`news/detail/${this.idNews}`)
     this.news = await getNews('news')
 
     this.titleNews = await this.newsDetail[0].title
+    this.isiNews = await this.newsDetail[0].news
 
     useHead({
       title: `${this.titleNews } | VuePH`,
+      description: `${this.isiNews}`,
+      meta: [
+          {
+            property: 'og:title',
+            content: `${this.titleNews}`,
+          },
+          {
+            property: 'og:description',
+            content: `${this.isiNews}`,
+          },
+          {
+            property: 'og:url',
+            content: `https://vueph.fphaikal.my.id/news/detail/${this.idNews}`,
+          },
+        ],
     });
   },
 

@@ -56,6 +56,7 @@ const router = createRouter({
       component: TheaterSchedules,
       meta: {
         title: 'Theater | VuePH',
+        description: 'Jadwal Theater JKT48'
       },
     },
     {

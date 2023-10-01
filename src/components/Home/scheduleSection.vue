@@ -13,15 +13,15 @@ import { RouterLink } from "vue-router";
           <div class="card text-light rounded-4 mb-2 mt-3" style="background-color: #1e2124;" v-if="data.event.length > 0">
             <div class="card-body">
                 <div class="row g-1">
-                  <div class="col-2 my-auto" v-if="data.event.length > 0">
+                  <div class="col-md-2 col-3 my-auto" v-if="data.event.length > 0">
                     <h6 class="m-0">{{ data.date }}</h6>
                   </div>
-                  <div class="col-1 my-auto" v-if="data.event.length > 0">
-                    <div v-for="events in data.event" :key="events.title" class="my-auto">
+                  <div class="col-md-1 col-3 my-auto" v-if="data.event.length > 0">
+                    <div v-for="events in data.event" :key="events.title" class="my-auto mx-auto">
                       <img :src="'https://jkt48.com' + events.category" class="img-fluid m-0 rounded-3" alt="">
                     </div>
                   </div>
-                  <div class="col-6 my-auto" v-if="data.event.length > 0">
+                  <div class="col-md-6 col-6 my-auto" v-if="data.event.length > 0">
                     <div v-for="events in data.event" :key="events.title" class="my-auto">
                       <h6 class="mb-0">{{ events.title }}</h6>
                     </div>
