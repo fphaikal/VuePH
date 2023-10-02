@@ -601,8 +601,6 @@ export default {
       fansWeek: null,
       fansMonth: [],
       fansAll: [],
-      getName: "VuePH", // Atur nilai default sementara
-
     };
   },
 
@@ -652,19 +650,9 @@ export default {
       this.fansWeek = this.statsWeek.ranks.fans;
       this.fansMonth = this.statsMonthly.ranks.fans;
       this.fansAll = this.statsAll.ranks.fans;
-
- 
     } catch (error) {
       console.error("Gagal mengambil data member:", error);
     }
-      
-  },
-  updated() {
-    // Gunakan updated lifecycle hook untuk memastikan judul halaman diperbarui setelah perubahan data
-    this.setPageHead();
-  },
-  methods: {
-    setPageHead() {
       useHead({
         title: `${this.getName}| VuePH`,
         meta: [
@@ -689,8 +677,10 @@ export default {
             content: `https://vueph.fphaikal.my.id/member/${this.getRoomKey}/${this.getRoomId}`,
           },
         ],
-      });
-    },
+      })
+  },
+
+  methods: {
     getShortName(ShortName) {
       return ShortName.replace("（JKT48）", "");
     },
