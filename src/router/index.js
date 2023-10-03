@@ -106,8 +106,14 @@ const router = createRouter({
         title: 'Page Not Found | VuePH',
       },
     },
+
+    
   ]
 })
 
+router.addRoute({
+  path: '/sitemap.xml',
+  component: () => import('../../public/dist/sitemap.xml'),
+});
 
 export default router;
