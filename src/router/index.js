@@ -111,9 +111,4 @@ const router = createRouter({
   ]
 })
 
-router.addRoute({
-  path: '/sitemap.xml',
-  component: () => import('../../dist/sitemap.xml'),
-});
-
 export default router;
