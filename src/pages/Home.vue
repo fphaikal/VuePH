@@ -61,24 +61,32 @@ import scheduleSection from '../components/Home/scheduleSection.vue';
 import { useHead } from '@unhead/vue';
 
 export default {
-  async mounted() {
-    useHead({
-      title: this.$route.meta.title || 'VuePH',
-      meta: [
-        {
-          name: 'description',
-          content: this.$route.meta.description,
-        },
-        {
-          property: 'og:title',
-          content: this.$route.meta.title,
-        },
-        {
-          property: 'og:description',
-          content: this.$route.meta.description,
-        },
-      ],
-    });
+  async mounted() {    
+  },
+  updated() {
+    // Gunakan updated lifecycle hook untuk memastikan judul halaman diperbarui setelah perubahan data
+    this.setPageHead();
+  },
+  methods: {
+    setPageHead() {
+      useHead({
+        title: this.$route.meta.title || 'VuePH',
+        meta: [
+          {
+            name: 'description',
+            content: this.$route.meta.description,
+          },
+          {
+            property: 'og:title',
+            content: this.$route.meta.title,
+          },
+          {
+            property: 'og:description',
+            content: this.$route.meta.description,
+          },
+        ],
+      });
+    },
   }
 }
 </script>

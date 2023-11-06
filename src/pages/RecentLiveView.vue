@@ -162,6 +162,7 @@ import { RouterLink } from "vue-router"
 
 <script>
 import { getRecentLive } from '../components/api';
+import { useHead } from "@unhead/vue";
 
 export default {
     data() {
@@ -173,7 +174,23 @@ export default {
     async mounted() {
         this.recentLive = await getRecentLive("date", 1, "active", -1, 30)
     },
+    updated() {
+        // Gunakan updated lifecycle hook untuk memastikan judul halaman diperbarui setelah perubahan data
+        this.setPageHead();
+    },
+
     methods: {
+        setPageHead() {
+            useHead({
+                title: this.$route.meta.title || 'VuePH',
+                meta: [
+                    {
+                        property: 'og:title',
+                        content: this.$route.meta.title,
+                    },
+                ],
+            });
+        },
         redirectToRecentLiveDetail(memberName, dataId) {
             this.$router.push({ path: `/recent-live/${memberName}/${dataId}` })
         },

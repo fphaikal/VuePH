@@ -207,6 +207,7 @@
 
 <script>
 import { getShowroomAdminData } from "../components/api";
+import { useHead } from "@unhead/vue";
 
 export default {
   data() {
@@ -219,12 +220,48 @@ export default {
     try {
       const setlistId = this.$route.params.setlistId;
       this.setlistInfo = await getShowroomAdminData(`schedules/${setlistId}`);
+
+      this.getName = this.setlistInfo.setlist.name
+      this.getDescription = this.setlistInfo.setlist.description
+      this.getImage = this.setlistInfo.setlist.image
+      this.getId = this.setlistInfo._id
+
     } catch (error) {
       console.error("Gagal mengambil data member:", error);
     }
   },
-
+  updated() {
+    // Gunakan updated lifecycle hook untuk memastikan judul halaman diperbarui setelah perubahan data
+    this.setPageHead();
+  },
   methods: {
+    setPageHead() {
+      useHead({
+        title: `${this.getName} | VuePH`,
+        meta: [
+          {
+            name: 'description',
+            content: `${this.getName} adalah member resmi dari idol grup JKT48`,
+          },
+          {
+            property: 'og:title',
+            content: `${this.getName}`,
+          },
+          {
+            property: 'og:description',
+            content: `${this.getDescription}`,
+          },
+          {
+            property: 'og:image',
+            content: `${this.getImage}`,
+          },
+          {
+            property: 'og:url',
+            content: `https://vueph.fphaikal.my.id/setlist/${this.getId}`,
+          },
+        ],
+      });
+    },
     formatLocalDate(dateString) {
       const date = new Date(dateString);
       const options = {
