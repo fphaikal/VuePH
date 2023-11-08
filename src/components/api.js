@@ -107,7 +107,7 @@ const getLive = async(endpoint) => {
     return response.data
   } catch (error) {
     console.error('Gagal mengambil data Live: ', error);
-  };
+  }
 }
 const getLiveInfo = async(endpoint) => {
   try {
@@ -117,7 +117,7 @@ const getLiveInfo = async(endpoint) => {
     return response.data
   } catch (error) {
     console.error('Gagal mengambil data Live: ', error);
-  };
+  }
 }
 
 
